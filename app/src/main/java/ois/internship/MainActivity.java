@@ -11,7 +11,7 @@ import ois.internship.view.activity.Grid1;
 import ois.internship.view.activity.Page1;
 import ois.internship.view.activity.Page2;
 import ois.internship.view.activity.Page4;
-import ois.internship.view.fragment.ApplyDialogFragment;
+import ois.internship.view.fragment.AgreeDialogFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     BootstrapButton button4;
     BootstrapButton button5;
 
-    ApplyDialogFragment applyDialogFragment;
+    AgreeDialogFragment agreeDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //startActivity(new Intent(getBaseContext(), Page3.class));
-                applyDialogFragment = new ApplyDialogFragment();
-                applyDialogFragment.show(getFragmentManager(), "");
+                agreeDialogFragment = new AgreeDialogFragment();
+                agreeDialogFragment.show(getFragmentManager(), "");
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {
