@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.andexert.library.RippleView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/more"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:layout_margin="0dp"
+    app:rv_rippleDuration="200"
+    app:rv_zoomDuration="50"
+    app:rv_alpha="30"
+    app:rv_color="@android:color/black">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:padding="0dp">
+
+    <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+        android:id="@+id/simple_list_thumbnail"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        app:bootstrapBrand="regular"
+        app:hasBorder="false"/>
+
+    <TextView
+        android:id="@+id/simple_list_textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp"
+        android:textSize="16dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/bootstrap_gray_dark"/>
+
+    <!--com.beardedhen.androidbootstrap.AwesomeTextView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:bootstrapBrand="success"
+        app:fontAwesomeIcon="fa_android" /-->
+</LinearLayout>
+</com.andexert.library.RippleView>

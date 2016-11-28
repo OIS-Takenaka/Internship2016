@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- INTENT KEY -->
+    <string name="intentKEY">INTENT_KEY</string>
+
+    <!-- HTTPのパス -->
+    <string name="httpPath">http://10.0.2.2/ois</string>
+</resources>

@@ -1,0 +1,1 @@
+Project Structure → Dependencies → + → androidbootstrap
