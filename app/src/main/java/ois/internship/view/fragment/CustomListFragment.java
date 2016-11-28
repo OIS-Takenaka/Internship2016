@@ -11,13 +11,13 @@ import ois.internship.view.ui.Lists.ListFragment;
 import ois.internship.view.ui.Lists.ListLayout;
 import ois.internship.view.ui.Lists.ListModel;
 
-public class ToDoListListFragment extends ListFragment {
+public class CustomListFragment extends ois.internship.view.ui.Lists.ListFragment {
 
     FragmentTransaction fragmentTransaction;
     int fragmentTransactionFrame = R.id.to_do_list;
 
 
-    public ToDoListListFragment(Activity activity){
+    public CustomListFragment(Activity activity){
         Log.i("DEBUG","ToDoLilstFragment");
 
         listLayout = new ListLayout(R.id.todo_list_view);

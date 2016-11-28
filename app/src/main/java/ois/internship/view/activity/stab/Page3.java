@@ -1,23 +1,21 @@
-package ois.internship.view.activity;
+package ois.internship.view.activity.stab;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
-import ois.internship.view.ui.tab.TabPagerAdpter;
+import ois.internship.view.activity.BaseActivity;
 
-public class Page4 extends BaseActivity {
+public class Page3 extends BaseActivity {
 
     BootstrapButton button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__page4);
+        setContentView(R.layout.activity__page1);
 
         /////////////////////////////////////////////////////////////////////////
         // ここから処理を書く
@@ -29,13 +27,6 @@ public class Page4 extends BaseActivity {
                 finish();
             }
         });
-
-        TabPagerAdpter adapter = new TabPagerAdpter(this, 10);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-
-        tabLayout.setupWithViewPager(viewPager);
-        viewPager.setAdapter(adapter);
 
         /////////////////////////////////////////////////////////////////////////
     }

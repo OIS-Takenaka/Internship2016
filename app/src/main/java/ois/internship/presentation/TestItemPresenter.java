@@ -14,7 +14,7 @@ import ois.internship.model.loader.AsyncHttpLoader;
 import ois.internship.model.loader.BaseLoader;
 import ois.internship.model.repository.injector.ItemRepositoryInjector;
 import ois.internship.model.repository.item.ItemRepository;
-import ois.internship.view.activity.Grid1;
+import ois.internship.view.activity.stab.Grid1;
 import ois.internship.view.fragment.CardsFragment;
 
 

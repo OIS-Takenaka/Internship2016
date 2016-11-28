@@ -1,4 +1,4 @@
-package ois.internship.view.activity;
+package ois.internship.view.activity.stab;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +9,7 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import java.util.ArrayList;
 
 import ois.internship.R;
+import ois.internship.view.activity.BaseActivity;
 import ois.internship.view.fragment.CardsFragment;
 import ois.internship.view.ui.Cards.CardModel;
 

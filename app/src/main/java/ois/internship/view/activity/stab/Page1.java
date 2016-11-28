@@ -1,4 +1,4 @@
-package ois.internship.view.activity;
+package ois.internship.view.activity.stab;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,13 +6,14 @@ import android.view.View;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
-import ois.internship.view.fragment.ToDoListListFragment;
+import ois.internship.view.activity.BaseActivity;
+import ois.internship.view.fragment.CustomListFragment;
 import ois.internship.view.ui.Lists.ListModel;
 
 public class Page1 extends BaseActivity {
 
     BootstrapButton button;
-    ToDoListListFragment toDoListFragment;
+    CustomListFragment toDoCustomListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,10 @@ public class Page1 extends BaseActivity {
             }
         });
 
-        toDoListFragment = new ToDoListListFragment(this);
-        toDoListFragment.addData(new ListModel(null, "AAA"));
-        toDoListFragment.addData(new ListModel(null, "BBB"));
-        toDoListFragment.addData(new ListModel(null, "CCC"));
+        toDoCustomListFragment = new CustomListFragment(this);
+        toDoCustomListFragment.addData(new ListModel(null, "AAA"));
+        toDoCustomListFragment.addData(new ListModel(null, "BBB"));
+        toDoCustomListFragment.addData(new ListModel(null, "CCC"));
 
 
         /////////////////////////////////////////////////////////////////////////

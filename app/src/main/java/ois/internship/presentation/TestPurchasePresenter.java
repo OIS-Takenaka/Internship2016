@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import ois.internship.model.entity.ItemEntity;
 import ois.internship.view.BaseViewInterface;
-import ois.internship.view.activity.Grid1;
-import ois.internship.view.fragment.ToDoListListFragment;
+import ois.internship.view.activity.stab.Grid1;
+import ois.internship.view.fragment.CustomListFragment;
 import ois.internship.view.ui.If.ListsInterface;
 import ois.internship.view.ui.Lists.ListModel;
 
@@ -30,7 +30,7 @@ public class TestPurchasePresenter extends BasePresenter implements ListsInterfa
     // Option Variable
     //------------------------------------------------------------------------------
     // Fragmnt
-    public ToDoListListFragment toDoListFragment;
+    public CustomListFragment toDoCustomListFragment;
 
     //=============================================================================
     // Constracter
@@ -47,8 +47,8 @@ public class TestPurchasePresenter extends BasePresenter implements ListsInterfa
     @Override
     public void onCreate() {
         // リスト
-        toDoListFragment = new ToDoListListFragment(view);
-        toDoListFragment.setData(getListData());
+        toDoCustomListFragment = new CustomListFragment(view);
+        toDoCustomListFragment.setData(getListData());
     }
 
     @Override

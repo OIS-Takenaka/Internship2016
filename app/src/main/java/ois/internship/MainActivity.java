@@ -7,10 +7,11 @@ import android.view.View;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
-import ois.internship.view.activity.Grid1;
-import ois.internship.view.activity.Page1;
-import ois.internship.view.activity.Page2;
-import ois.internship.view.activity.Page4;
+import ois.internship.view.activity.ItemPage;
+import ois.internship.view.activity.stab.Grid1;
+import ois.internship.view.activity.stab.Page1;
+import ois.internship.view.activity.stab.Page2;
+import ois.internship.view.activity.stab.Page4;
 import ois.internship.view.fragment.AgreeDialogFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), Page1.class));
+                //startActivity(new Intent(getBaseContext(), Page1.class));
+                startActivity(new Intent(getBaseContext(), ItemPage.class));
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {

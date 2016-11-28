@@ -1,4 +1,4 @@
-package ois.internship.view.activity;
+package ois.internship.view.activity.stab;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.GridView;
 import ois.internship.R;
 import ois.internship.presentation.TestItemPresenter;
 import ois.internship.presentation.TestPurchasePresenter;
+import ois.internship.view.activity.BaseActivity;
 
 
 public class Grid1 extends BaseActivity {
