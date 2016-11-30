@@ -3,13 +3,9 @@ package ois.internship.view.activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-
-import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
 import ois.internship.presentation.ItemPresenter;
-import ois.internship.view.ui.tab.TabPagerAdpter;
 
 public class ItemPage extends BaseActivity {
 
@@ -28,6 +24,12 @@ public class ItemPage extends BaseActivity {
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+
+        // presenter初期化
+        itemPresenter = new ItemPresenter(getBaseContext(), this);
+
+        // presenter描画
+        itemPresenter.onCreate();
 
         /////////////////////////////////////////////////////////////////////////
     }

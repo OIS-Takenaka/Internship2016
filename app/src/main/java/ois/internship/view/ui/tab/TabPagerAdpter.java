@@ -33,8 +33,6 @@ public class TabPagerAdpter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View v = activity.getLayoutInflater().inflate(R.layout.component__grid, null);
-        data.add(new CardModel(null, "AAAAA"));
-        data.add(new CardModel(null, "BBBBB"));
         CardFragment cardsFragment = new CardsFragment(activity, (GridView)v.findViewById(R.id.card_frame));
         cardsFragment.setData(data);
         container.addView(v);

@@ -13,7 +13,7 @@ import ois.internship.R;
 import ois.internship.model.loader.AsyncHttpLoader;
 import ois.internship.model.loader.BaseLoader;
 import ois.internship.model.repository.injector.ItemRepositoryInjector;
-import ois.internship.model.repository.item.ItemRepository;
+import ois.internship.model.repository.item.TestItemRepository;
 import ois.internship.view.activity.stab.Grid1;
 import ois.internship.view.fragment.CardsFragment;
 
@@ -27,7 +27,7 @@ public class TestItemPresenter extends BasePresenter implements LoaderManager.Lo
     private Context context;
 
     // Repository
-    private ItemRepositoryInjector data = new ItemRepository();
+    private ItemRepositoryInjector data = new TestItemRepository();
 
     // View
     private Grid1 view;
@@ -110,7 +110,7 @@ public class TestItemPresenter extends BasePresenter implements LoaderManager.Lo
     @Override
     public void onLoadFinished(Loader<JSONArray> loader, JSONArray data) {
         if(data != null) Log.i("DEBUG", data.toString());
-        this.data = new ItemRepository();
+        this.data = new TestItemRepository();
         try {
             // 変換
             for(int i=0; i < data.length(); i++) {

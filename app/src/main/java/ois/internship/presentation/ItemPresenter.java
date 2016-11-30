@@ -1,6 +1,5 @@
 package ois.internship.presentation;
 
-import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Loader;
@@ -10,17 +9,16 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
+
 import ois.internship.R;
+import ois.internship.model.entity.ItemEntity;
 import ois.internship.model.loader.AsyncHttpLoader;
 import ois.internship.model.loader.BaseLoader;
-import ois.internship.model.repository.injector.ItemRepositoryInjector;
 import ois.internship.model.repository.item.ItemRepository;
 import ois.internship.view.activity.ItemPage;
-import ois.internship.view.activity.stab.Grid1;
 import ois.internship.view.fragment.CardsFragment;
 import ois.internship.view.ui.tab.TabPagerAdpter;
-
-import static ois.internship.R.id.viewPager;
 
 
 public class ItemPresenter extends BasePresenter implements LoaderManager.LoaderCallbacks<JSONArray> {
@@ -32,7 +30,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         private Context context;
 
         // Repository
-        private ItemRepositoryInjector data = new ItemRepository();
+        private ItemRepository data = new ItemRepository();
 
         // View
         private ItemPage view;
@@ -66,9 +64,8 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
 
         @Override
         public void onRefresh() {
-            //cardsFragment = new CardsFragment(view, view.gridView);
-            //cardsFragment.setData(data.getCardData());
-            TabPagerAdpter adapter = new TabPagerAdpter((Activity) context, 10);
+            TabPagerAdpter adapter = new TabPagerAdpter(view, data.categorySize());
+            adapter.setData(data.getCardData());
             view.tabLayout.setupWithViewPager(view.viewPager);
             view.viewPager.setAdapter(adapter);
         }
@@ -78,24 +75,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         // private
         //=============================================================================
         // モックデータ
-        private void loadMock(){
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-            data.add(null, "AAAAA", null, null, 0);
-        }
-
+        private void loadMock(){}
 
         //=============================================================================
         // Loader
@@ -121,15 +101,17 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
             this.data = new ItemRepository();
             try {
                 // 変換
+                ArrayList<ItemEntity> tempItemList = new ArrayList<>();
                 for(int i=0; i < data.length(); i++) {
-                    this.data.add(
+                    tempItemList.add(new ItemEntity(
                             context.getString(R.string.httpPath) + "/img/" + data.getJSONObject(i).getString("img"),
                             data.getJSONObject(i).getString("name"),
                             data.getJSONObject(i).getString("maker"),
                             data.getJSONObject(i).getString("category"),
                             data.getJSONObject(i).getLong("price")
-                    );
+                    ));
                 }
+                this.data.set(0, tempItemList);
             } catch (JSONException e){e.printStackTrace();}
             view.onRefresh();
         }

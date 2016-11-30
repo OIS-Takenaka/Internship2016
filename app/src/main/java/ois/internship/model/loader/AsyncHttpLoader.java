@@ -32,6 +32,9 @@ public class AsyncHttpLoader extends BaseLoader{
      * HTTP通信
      * @param u
      * @return JSONデータ
+     *
+     * URL形式
+     * http://xxxxxx?c=1&p=1
      */
     private JSONArray tryHttpRequest(String u){
         // 取得したテキストを格納する変数
