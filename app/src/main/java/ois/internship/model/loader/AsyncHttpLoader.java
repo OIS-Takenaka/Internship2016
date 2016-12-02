@@ -43,7 +43,7 @@ public class AsyncHttpLoader extends BaseLoader{
 
         try {
             // URLオブジェクト生成
-            URL url = new URL(context.getString(R.string.httpPath) + "/responce.php?q=i");
+            URL url = new URL(context.getString(R.string.httpPath) + "/responce.php?q=i&c=" + this.url);
 
             // コネクション生成
             con = (HttpURLConnection) url.openConnection();

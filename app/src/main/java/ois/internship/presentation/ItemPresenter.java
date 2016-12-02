@@ -10,11 +10,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 import ois.internship.R;
 import ois.internship.model.entity.ItemEntity;
 import ois.internship.model.loader.AsyncHttpLoader;
 import ois.internship.model.loader.BaseLoader;
+import ois.internship.model.repository.item.CategoryRepository;
 import ois.internship.model.repository.item.ItemRepository;
 import ois.internship.view.activity.ItemPage;
 import ois.internship.view.fragment.CardsFragment;
@@ -30,11 +32,13 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         private Context context;
 
         // Repository
-        private ItemRepository data = new ItemRepository();
+        private CategoryRepository category = new CategoryRepository();
+        private ArrayList<ItemRepository> data = new ArrayList<>();
 
         // View
         private ItemPage view;
 
+        private Stack<String> getCategory = new Stack<>();
 
         //------------------------------------------------------------------------------
         // Option Variable
@@ -58,14 +62,16 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         //=============================================================================
         @Override
         public void onCreate(){
-            onCreateLoader("List");
+            getCategory.push("food");
+            getCategory.push("clothes");
+            onCreateLoader();
             view.onRefresh();
         }
 
         @Override
         public void onRefresh() {
-            TabPagerAdpter adapter = new TabPagerAdpter(view, data.categorySize());
-            adapter.setData(data.getCardData());
+            TabPagerAdpter adapter = new TabPagerAdpter(view, data.size());
+            if(data.size() > 0)adapter.setData(data.get(0).getCardData());
             view.tabLayout.setupWithViewPager(view.viewPager);
             view.viewPager.setAdapter(adapter);
         }
@@ -80,14 +86,16 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         //=============================================================================
         // Loader
         //=============================================================================
-        private void onCreateLoader(String url) {
+        private void onCreateLoader() {
+            Log.i("DEBUG", "onCreateLoader");
             Bundle bundle = new Bundle();
-            bundle.putString("url", "List");
+            bundle.putString("url", getCategory.pop());
             view.getLoaderManager().initLoader(0, bundle, this);
         }
 
         @Override
         public Loader<JSONArray> onCreateLoader(int id, Bundle args) {
+            Log.w("DEBUG ---", args.getString("url"));
             String url = args.getString("url");
             BaseLoader asyncTaskLoader = new AsyncHttpLoader(context, url);
             //BaseLoader asyncTaskLoader = new MockAsyncTaskLoader(context, url);
@@ -98,7 +106,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         @Override
         public void onLoadFinished(Loader<JSONArray> loader, JSONArray data) {
             if(data != null) Log.i("DEBUG", data.toString());
-            this.data = new ItemRepository();
+            this.data.add(new ItemRepository());
             try {
                 // 変換
                 ArrayList<ItemEntity> tempItemList = new ArrayList<>();
@@ -111,9 +119,12 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
                             data.getJSONObject(i).getLong("price")
                     ));
                 }
-                this.data.set(0, tempItemList);
+                this.data.get(this.data.size()-1).set(tempItemList);
             } catch (JSONException e){e.printStackTrace();}
             view.onRefresh();
+
+            Log.i("debug---", getCategory.toString());
+            //if(!getCategory.empty()) onCreateLoader();
         }
 
         @Override
