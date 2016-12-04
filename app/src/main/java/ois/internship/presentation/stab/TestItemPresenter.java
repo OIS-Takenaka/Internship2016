@@ -1,4 +1,4 @@
-package ois.internship.presentation;
+package ois.internship.presentation.stab;
 
 import android.app.LoaderManager;
 import android.content.Context;
@@ -14,6 +14,7 @@ import ois.internship.model.loader.AsyncHttpLoader;
 import ois.internship.model.loader.BaseLoader;
 import ois.internship.model.repository.injector.ItemRepositoryInjector;
 import ois.internship.model.repository.item.TestItemRepository;
+import ois.internship.presentation.BasePresenter;
 import ois.internship.view.activity.stab.Grid1;
 import ois.internship.view.fragment.CardsFragment;
 

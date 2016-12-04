@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".view.activity.BillPage">
+
+    <!-- 購入商品一覧 -->
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_weight="4">
+
+        <LinearLayout
+            android:id="@+id/to_do_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </LinearLayout>
+
+
+    <!-- 購入代金一覧 -->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="8">
+
+        <GridLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:textSize="17sp"
+            android:text="合計金額"
+            />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:textSize="17sp"
+            android:text="送料"
+            />
+
+        </GridLayout>
+
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingBottom="0dp"
+            android:layout_alignParentBottom="true"
+            android:text="購入"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

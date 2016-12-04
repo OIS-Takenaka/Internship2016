@@ -1,10 +1,11 @@
-package ois.internship.presentation;
+package ois.internship.presentation.stab;
 
 import android.content.Context;
 
 import java.util.ArrayList;
 
 import ois.internship.model.entity.ItemEntity;
+import ois.internship.presentation.BasePresenter;
 import ois.internship.view.BaseViewInterface;
 import ois.internship.view.activity.stab.Grid1;
 import ois.internship.view.fragment.CustomListFragment;

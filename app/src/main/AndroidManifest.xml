@@ -33,6 +33,9 @@
         <activity
             android:name=".view.activity.ItemPage"
             android:screenOrientation="landscape"/>
+        <activity
+            android:name=".view.activity.BillPage"
+            android:screenOrientation="landscape"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.GridView;
 
 import ois.internship.R;
-import ois.internship.presentation.TestItemPresenter;
-import ois.internship.presentation.TestPurchasePresenter;
+import ois.internship.presentation.stab.TestItemPresenter;
+import ois.internship.presentation.stab.TestPurchasePresenter;
 import ois.internship.view.activity.BaseActivity;
 
 

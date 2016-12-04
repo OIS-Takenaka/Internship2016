@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
+import ois.internship.view.activity.BillPage;
 import ois.internship.view.activity.ItemPage;
 import ois.internship.view.activity.stab.Grid1;
 import ois.internship.view.activity.stab.Page1;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     BootstrapButton button3;
     BootstrapButton button4;
     BootstrapButton button5;
+    BootstrapButton button6;
 
     AgreeDialogFragment agreeDialogFragment;
 
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         button3 = (BootstrapButton)findViewById(R.id.button3);
         button4 = (BootstrapButton)findViewById(R.id.button4);
         button5 = (BootstrapButton)findViewById(R.id.button5);
+        button6 = (BootstrapButton)findViewById(R.id.button6);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getBaseContext(), Page4.class));
+            }
+        });
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), BillPage.class));
             }
         });
 
