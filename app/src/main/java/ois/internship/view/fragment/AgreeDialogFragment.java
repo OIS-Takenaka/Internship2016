@@ -5,12 +5,12 @@ import android.util.Log;
 import ois.internship.view.ui.Dailog.DialogFragment;
 import ois.internship.view.ui.Dailog.DialogModel;
 
-public class ApplyDialogFragment extends DialogFragment {
+public class AgreeDialogFragment extends DialogFragment {
 
     /**
      * コンストラクタ
      */
-    public ApplyDialogFragment(){
+    public AgreeDialogFragment(){
         Log.i("DEBUG", "TempDialogFragment");
     }
 
@@ -21,6 +21,7 @@ public class ApplyDialogFragment extends DialogFragment {
         dismiss();
     }
     public void setData(DialogModel data) {
+
 
     }
 }
