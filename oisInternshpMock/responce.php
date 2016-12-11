@@ -13,6 +13,10 @@ define("ITEM_FILE_PATH", "./data.csv");
 //=========================================
 // クエリパラメーター
 $query = null;
+// カテゴリ
+$queryCategory = null;
+// ページ数
+$queryPage = null;
 
 // カテゴリオブジェクト
 $categoryRecords = [];
@@ -27,6 +31,8 @@ $itemJson = [];
 //=========================================
 // GET TO 
 //=========================================
+$queryCategory = @$_GET['c'];
+$queryPage = @$_GET['p'];
 $query = @$_GET['q'];
 
 //=========================================
@@ -51,6 +57,7 @@ foreach ($categoryRecords as $key => $line) {
 $file = new SplFileObject(ITEM_FILE_PATH);
 $file->setFlags(SplFileObject::READ_CSV);
 foreach ($file as $line) $itemRecords[] = $line;
+
 // 商品JSON生成
 foreach ($itemRecords as $key => $line) {
   if($line == [null]) break;
@@ -66,9 +73,11 @@ foreach ($itemRecords as $key => $line) {
     "price" => $line[1],
     "maker" => $line[2],
     "category" => $line[3],
-    "img" => ( $tempCat[2] ."/". $line[4] )
+    "img" => ( $line[3] ."/". $line[4] )
   );
-  array_push($itemJson, $tempData);
+  //if(@$itemJson[$line[3]] == null) $itemJson[$line[3]] = [];
+  //array_push($itemJson[$line[3]], $tempData);
+  if($queryCategory == $line[3] || $queryCategory == "all") array_push($itemJson, $tempData);
 }
 
 //=========================================
