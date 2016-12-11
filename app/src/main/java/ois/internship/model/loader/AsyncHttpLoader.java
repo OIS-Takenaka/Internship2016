@@ -5,13 +5,9 @@ import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
 import ois.internship.R;
@@ -44,6 +40,7 @@ public class AsyncHttpLoader extends BaseLoader{
         try {
             // URLオブジェクト生成
             URL url = new URL(context.getString(R.string.httpPath) + "/responce.php?q=i&c=" + this.url);
+            Log.i("GET URL", url.getPath());
 
             // コネクション生成
             con = (HttpURLConnection) url.openConnection();
@@ -59,18 +56,11 @@ public class AsyncHttpLoader extends BaseLoader{
 
             // JSONに変換
             InputStream in = con.getInputStream();
-            byte bodyByte[] = new byte[1024];
+            byte bodyByte[] = new byte[32768];
             in.read(bodyByte);
             in.close();
             result = new JSONArray(new String(bodyByte));
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (con != null) con.disconnect(); // コネクションを切断

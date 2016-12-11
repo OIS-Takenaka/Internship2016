@@ -18,6 +18,7 @@ import ois.internship.R;
 import ois.internship.model.entity.ItemEntity;
 import ois.internship.model.loader.AsyncHttpLoader;
 import ois.internship.model.loader.BaseLoader;
+import ois.internship.model.loader.MockAsyncTaskLoader;
 import ois.internship.model.repository.item.CategoryRepository;
 import ois.internship.model.repository.item.ItemRepository;
 import ois.internship.view.activity.ItemPage;
@@ -29,6 +30,11 @@ import static android.view.View.VISIBLE;
 
 
 public class ItemPresenter extends BasePresenter implements LoaderManager.LoaderCallbacks<JSONArray> {
+
+        //=============================================================================
+        // TEST FLAG
+        //=============================================================================
+        boolean TEST_FLAG = false;
 
         //=============================================================================
         // Variable
@@ -99,7 +105,8 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         private void onCreateLoader() {
             Log.i("DEBUG", "onCreateLoader");
             Bundle bundle = new Bundle();
-            bundle.putString("url", getCategory.pop());
+            //bundle.putString("url", getCategory.pop());
+            bundle.putString("url", "all");
             view.getLoaderManager().initLoader(0, bundle, this);
         }
 
@@ -107,8 +114,12 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         public Loader<JSONArray> onCreateLoader(int id, Bundle args) {
             Log.w("DEBUG ---", args.getString("url"));
             String url = args.getString("url");
-            BaseLoader asyncTaskLoader = new AsyncHttpLoader(context, url);
-            //BaseLoader asyncTaskLoader = new MockAsyncTaskLoader(context, url);
+            BaseLoader asyncTaskLoader = null;
+            if(TEST_FLAG) {
+                asyncTaskLoader = new MockAsyncTaskLoader(context, url);
+            } else {
+                asyncTaskLoader = new AsyncHttpLoader(context, url);
+            }
             asyncTaskLoader.forceLoad();
             return asyncTaskLoader;
         }
@@ -147,7 +158,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         //=============================================================================
         public void setSelectItemNum(int selectItemNum) {
             this.selectItemNum = selectItemNum;
-            view.onRefresh();
+            this.setSide();
         }
 
         private void setSide(){
@@ -191,7 +202,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
             } else {
                 cart.add(data.get(0).getItem(selectItemNum));
             }
-            onRefresh();
+            this.setSide();
         }
 
         public ItemRepository getCart(){

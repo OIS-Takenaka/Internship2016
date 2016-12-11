@@ -3,6 +3,9 @@ package ois.internship.presentation.logic.billCalc;
 
 public class FreeMeｍberLogic {
 
+    // 現在日付
+    private int day = 1;
+
     // 割引価格
     private int billDiscountPrice = 0;
 
