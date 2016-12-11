@@ -2,20 +2,23 @@ package ois.internship;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
+import java.util.ArrayList;
+
+import ois.internship.model.entity.ItemEntity;
+import ois.internship.model.repository.item.ItemRepository;
+import ois.internship.view.activity.BaseActivity;
 import ois.internship.view.activity.BillPage;
 import ois.internship.view.activity.ItemPage;
 import ois.internship.view.activity.stab.Grid1;
-import ois.internship.view.activity.stab.Page1;
 import ois.internship.view.activity.stab.Page2;
 import ois.internship.view.activity.stab.Page4;
 import ois.internship.view.fragment.AgreeDialogFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     BootstrapButton button1;
     BootstrapButton button2;
@@ -26,8 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
     AgreeDialogFragment agreeDialogFragment;
 
+    MainActivity() {
+        intentData = new ItemRepository();
+        ArrayList<ItemEntity> item = new ArrayList<>();
+        item.add(new ItemEntity("AAA","BBB"));
+        intentData.set(item);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        enableBackBotton = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -46,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //startActivity(new Intent(getBaseContext(), Page1.class));
-                startActivity(new Intent(getBaseContext(), ItemPage.class));
+                //startActivity(new Intent(getBaseContext(), ItemPage.class));
+                transitionPage(ItemPage.class);
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {

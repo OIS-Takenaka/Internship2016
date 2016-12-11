@@ -120,7 +120,7 @@ public class TestItemPresenter extends BasePresenter implements LoaderManager.Lo
                         data.getJSONObject(i).getString("name"),
                         data.getJSONObject(i).getString("maker"),
                         data.getJSONObject(i).getString("category"),
-                        data.getJSONObject(i).getLong("price")
+                        (int)data.getJSONObject(i).getLong("price")
                 );
             }
         } catch (JSONException e){e.printStackTrace();}

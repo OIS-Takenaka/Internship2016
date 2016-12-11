@@ -1,6 +1,6 @@
 package ois.internship.view.ui.Cards;
 
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,23 +11,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import ois.internship.model.loader.AsyncImgLoader;
+import ois.internship.view.activity.BaseActivity;
+import ois.internship.view.ui.If.AsyncImg;
 
 
-public class CardAdapter extends BaseAdapter {
+public class CardAdapter extends BaseAdapter implements AsyncImg {
 
-    private Context context;
+    private BaseActivity activity;
     private CardLayout cardLayout;
     private LayoutInflater layoutInflater;
     private ArrayList<CardModel> data = new ArrayList<CardModel>();
+    private static HashMap cache = null;
 
-    public CardAdapter(Context context, ArrayList data, CardLayout cardLayout){
+    public CardAdapter(BaseActivity activity, ArrayList data, CardLayout cardLayout){
         super();
-        this.layoutInflater = LayoutInflater.from(context);
-        this.context = context;
+        this.layoutInflater = LayoutInflater.from(activity);
+        this.activity = activity;
         this.data = data;
         this.cardLayout = cardLayout;
+
+        // 画像ロード
+        if(cache != null) return;
+        cache = new HashMap();
+        for(int i=0; i < data.size(); i++) {
+            new AsyncImgLoader(activity, this, i).execute(this.data.get(i).img);
+        }
     }
 
     @Override
@@ -37,7 +48,7 @@ public class CardAdapter extends BaseAdapter {
         convertView = layoutInflater.inflate(cardLayout.layout, parent, false);
         ViewHolder holder = new ViewHolder(convertView);
         holder.textView.setText(data.get(position).text);
-        new AsyncImgLoader(context, holder.imageView).execute(data.get(position).img);
+        holder.imageView.setImageBitmap((Bitmap)cache.get(position));
         return convertView;
     }
 
@@ -53,7 +64,18 @@ public class CardAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        activity.setSelectItemNum(position);
+        return position;
+    }
+
+    @Override
+    public void setImage(int position, Bitmap bitmap) {
+        this.cache.put(position, bitmap);
+        notifyDataSetChanged();
+    }
+
+    public Bitmap getImage(int position) {
+        return (Bitmap) this.cache.get(position);
     }
 
     /**

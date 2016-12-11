@@ -1,6 +1,5 @@
 package ois.internship.view.ui.Cards;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -11,17 +10,19 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 
+import ois.internship.view.activity.BaseActivity;
+
 
 public abstract class CardFragment extends Fragment {
 
+    public CardAdapter adapter;
     ArrayList<CardModel> data;
     CardLayout cardLayout;
-    Activity activity;
+    BaseActivity activity;
     GridView gridView;
-    CardAdapter adapter;
     FragmentTransaction fragmentTransaction;
 
-    public CardFragment(Activity activity, GridView gridView, CardLayout cardLayout){
+    public CardFragment(BaseActivity activity, GridView gridView, CardLayout cardLayout){
         this.activity = activity;
         this.gridView = gridView;
         this.cardLayout = cardLayout;

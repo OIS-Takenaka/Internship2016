@@ -22,6 +22,9 @@ import ois.internship.view.activity.ItemPage;
 import ois.internship.view.fragment.CardsFragment;
 import ois.internship.view.ui.tab.TabPagerAdpter;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 
 public class ItemPresenter extends BasePresenter implements LoaderManager.LoaderCallbacks<JSONArray> {
 
@@ -45,7 +48,10 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         //------------------------------------------------------------------------------
         // Fragment
         private CardsFragment cardsFragment;
+        private TabPagerAdpter tabPagerAdpter;
 
+        // selected item
+        private int selectItemNum = -1;
 
         //=============================================================================
         // Constracter
@@ -70,12 +76,12 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
 
         @Override
         public void onRefresh() {
-            TabPagerAdpter adapter = new TabPagerAdpter(view, data.size());
-            if(data.size() > 0)adapter.setData(data.get(0).getCardData());
+            tabPagerAdpter = new TabPagerAdpter(view, data.size());
+            if(data.size() > 0)tabPagerAdpter.setData(data.get(0).getCardData());
             view.tabLayout.setupWithViewPager(view.viewPager);
-            view.viewPager.setAdapter(adapter);
+            view.viewPager.setAdapter(tabPagerAdpter);
+            this.setSide();
         }
-
 
         //=============================================================================
         // private
@@ -116,7 +122,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
                             data.getJSONObject(i).getString("name"),
                             data.getJSONObject(i).getString("maker"),
                             data.getJSONObject(i).getString("category"),
-                            data.getJSONObject(i).getLong("price")
+                            (int)data.getJSONObject(i).getLong("price")
                     ));
                 }
                 this.data.get(this.data.size()-1).set(tempItemList);
@@ -130,6 +136,35 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         @Override
         public void onLoaderReset(Loader<JSONArray> loader) {
 
+        }
+
+        //=============================================================================
+        // Sideber
+        //=============================================================================
+        public void setSelectItemNum(int selectItemNum) {
+            this.selectItemNum = selectItemNum;
+            view.onRefresh();
+        }
+
+        private void setSide(){
+            if(this.selectItemNum > -1){
+                setVisibilitySide(true);
+                view.selectItemCategory.setText(data.get(0).getItem(selectItemNum).getCategory());
+                view.selectItemTitle.setText(data.get(0).getItem(selectItemNum).getName());
+                view.selectItemPrice.setText("￥ " + data.get(0).getItem(selectItemNum).getPrice());
+                view.selectItemImg.setImageBitmap(tabPagerAdpter.cardsFragment.adapter.getImage(selectItemNum));
+            } else {
+                setVisibilitySide(false);
+                view.selectItemTitle.setText("商品を選択してください。");
+            }
+        }
+
+        private void setVisibilitySide(boolean bool){
+            int visibleFlag = ( bool ? VISIBLE : INVISIBLE);
+            view.selectItemImg.setVisibility(visibleFlag);
+            view.selectItemCategory.setVisibility(visibleFlag);
+            view.selectItemPriceLay.setVisibility(visibleFlag);
+            view.selectItemSubmitButton.setVisibility(visibleFlag);
         }
 }
 

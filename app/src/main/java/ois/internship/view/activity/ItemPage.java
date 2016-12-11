@@ -3,6 +3,11 @@ package ois.internship.view.activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
 import ois.internship.presentation.ItemPresenter;
@@ -10,8 +15,18 @@ import ois.internship.presentation.ItemPresenter;
 public class ItemPage extends BaseActivity {
 
     private ItemPresenter itemPresenter;
+
+    // pager
     public ViewPager viewPager;
     public TabLayout tabLayout;
+
+    // sideber
+    public ImageView selectItemImg;
+    public TextView selectItemCategory;
+    public TextView selectItemTitle;
+    public TextView selectItemPrice;
+    public LinearLayout selectItemPriceLay;
+    public BootstrapButton selectItemSubmitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +37,19 @@ public class ItemPage extends BaseActivity {
         // ここから処理を書く
         /////////////////////////////////////////////////////////////////////////
 
+        getIntentData();
+
+        // pagerのセット
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+
+        // sideberのセット
+        selectItemImg = (ImageView) findViewById(R.id.select_item_img);
+        selectItemCategory = (TextView) findViewById(R.id.select_item_category);
+        selectItemTitle = (TextView) findViewById(R.id.select_item_title);
+        selectItemPrice = (TextView) findViewById(R.id.select_item_price);
+        selectItemPriceLay = (LinearLayout) findViewById(R.id.select_item_price_lay);
+        selectItemSubmitButton = (BootstrapButton) findViewById(R.id.select_item_submit);
 
         // presenter初期化
         itemPresenter = new ItemPresenter(getBaseContext(), this);
@@ -39,7 +65,14 @@ public class ItemPage extends BaseActivity {
         super.onDestroy();
         itemPresenter = null;
     }
+
     public void onRefresh() {
         itemPresenter.onRefresh();
+    }
+
+    @Override
+    public void setSelectItemNum(int selectItemNum) {
+        super.setSelectItemNum(selectItemNum);
+        itemPresenter.setSelectItemNum(selectItemNum);
     }
 }

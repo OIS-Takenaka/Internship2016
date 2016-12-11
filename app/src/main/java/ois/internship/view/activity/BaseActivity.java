@@ -4,42 +4,93 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 
 import ois.internship.R;
-import ois.internship.model.repository.BaseRepository;
+import ois.internship.model.repository.item.ItemRepository;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
 
     public int pageID = 0;
-    public BaseRepository intentData;
+    public ItemRepository intentData;
+    //ItemEntity intentData;
+
+    // 前画面フラグ
+    public boolean enableBackBotton = true;
+
+    static final int RESULT_SUB_ACTIVITY = 2461;
 
     /**
      * 画面生成時のシーケンス
+     *
      * @param savedInstanceState
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(enableBackBotton);
+    }
+
+    /**
+     * アクションバー
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent();
+                intent.putExtra(getString(R.string.intentKEY), intentData);
+                setResult(RESULT_OK, intent);
+                finish();
+            default:
+                break;
+        }
+        return false;
     }
 
     /**
      * ページの遷移
+     *
      * @param c 遷移するクラス
-     * @param data 渡すデータ
      */
-    public void transitionPage(Class c,BaseRepository data){
-        Log.i("---",c.getName());
-        Intent intent = new Intent(this, c);
-        intent.putExtra("KEY", data);
-        startActivity(intent);
+    public void transitionPage(Class c) {
+        Log.i("---", c.getName());
+        try {
+            Intent intent = new Intent(getBaseContext(), c);
+            intent.putExtra(getString(R.string.intentKEY), intentData);
+            startActivityForResult(intent, RESULT_SUB_ACTIVITY);
+        } catch (Exception e) {
+            Intent intent = new Intent(getBaseContext(), c);
+            startActivity(intent);
+        }
     }
 
     /**
      * intentのデータを取得
      */
-    public void getIntentData(){
-        intentData = (BaseRepository) getIntent().getSerializableExtra(getString(R.string.intentKEY));
+    public void getIntentData() {
+        intentData = (ItemRepository) getIntent().getSerializableExtra(getString(R.string.intentKEY));
     }
 
+    /**
+     * 画面遷移時にデータを取得
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        Bundle bundle = intent.getExtras();
+        if (resultCode == RESULT_OK && requestCode == RESULT_SUB_ACTIVITY && intent != null) {
+            intentData = (ItemRepository) getIntent().getSerializableExtra(getString(R.string.intentKEY));
+            Log.w("intentData", "getIntentData");
+        }
+    }
+
+    /**
+     * 選択中のアイテムの変更
+     */
+    public void setSelectItemNum(int selectItemNum) {
+        Log.i("position", selectItemNum + "");
+    }
 }

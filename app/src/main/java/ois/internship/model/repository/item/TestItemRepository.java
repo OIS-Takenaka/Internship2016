@@ -27,7 +27,7 @@ public class TestItemRepository extends BaseRepository implements ItemRepository
         this.data= data;
     }
 
-    public void add(String img, String name, String maker, String category, float price) {
+    public void add(String img, String name, String maker, String category, int price) {
         data.add(new ItemEntity(img, name, maker, category, price));
     }
 

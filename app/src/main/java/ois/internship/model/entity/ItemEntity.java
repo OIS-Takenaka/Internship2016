@@ -1,6 +1,8 @@
 package ois.internship.model.entity;
 
-public class ItemEntity extends BaseEntity{
+import java.io.Serializable;
+
+public class ItemEntity extends BaseEntity implements Serializable{
 
     // 画像
     private String img = null;
@@ -15,11 +17,11 @@ public class ItemEntity extends BaseEntity{
     private String category = null;
 
     // 価格
-    private float price = -1;
+    private int price = -1;
 
     //=================================================================
     // CONSTRACTER
-    public ItemEntity(String img, String name, String maker, String category, float price){
+    public ItemEntity(String img, String name, String maker, String category, int price){
         this.img = img;
         this.name = name;
         this.maker = maker;
@@ -46,7 +48,7 @@ public class ItemEntity extends BaseEntity{
     public String getMaker() {
         return maker;
     }
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
     public String getCategory() {

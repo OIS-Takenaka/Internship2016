@@ -9,7 +9,7 @@ public class ListLayout {
 
     // リストアイテムのレイアウト
     int pLayout = R.layout.component__list;
-    int layout = R.layout.fragment__simple_list;
+    int layout = R.layout.fragment__bill_list;
 
     // 外枠のレイアウト
     int outFrame;

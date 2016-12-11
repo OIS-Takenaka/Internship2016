@@ -1,5 +1,6 @@
 package ois.internship.model.repository.item;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import ois.internship.model.entity.ItemEntity;
@@ -7,7 +8,7 @@ import ois.internship.model.repository.BaseRepository;
 import ois.internship.view.ui.Cards.CardModel;
 import ois.internship.view.ui.If.CardsInterface;
 
-public class ItemRepository extends BaseRepository implements CardsInterface {
+public class ItemRepository extends BaseRepository implements CardsInterface, Serializable{
 
     private ArrayList<ItemEntity> itemList;
 
