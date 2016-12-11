@@ -28,9 +28,6 @@
             android:name=".view.activity.stab.Page4"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.activity.stab.Grid1"
-            android:screenOrientation="landscape"/>
-        <activity
             android:name=".view.activity.ItemPage"
             android:screenOrientation="landscape"/>
         <activity
