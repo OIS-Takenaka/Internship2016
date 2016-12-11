@@ -33,9 +33,9 @@ public class Page1 extends BaseActivity {
         });
 
         toDoCustomListFragment = new CustomListFragment(this);
-        toDoCustomListFragment.addData(new ListModel(null, "AAA"));
-        toDoCustomListFragment.addData(new ListModel(null, "BBB"));
-        toDoCustomListFragment.addData(new ListModel(null, "CCC"));
+        toDoCustomListFragment.addData(new ListModel(null, "AAA", "111"));
+        toDoCustomListFragment.addData(new ListModel(null, "BBB", "222"));
+        toDoCustomListFragment.addData(new ListModel(null, "CCC", "333"));
 
 
         /////////////////////////////////////////////////////////////////////////

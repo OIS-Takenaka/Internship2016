@@ -3,6 +3,7 @@ package ois.internship.view.activity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class ItemPage extends BaseActivity {
     public TextView selectItemPrice;
     public LinearLayout selectItemPriceLay;
     public BootstrapButton selectItemSubmitButton;
+    public BootstrapButton selectItemBillButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +52,27 @@ public class ItemPage extends BaseActivity {
         selectItemPrice = (TextView) findViewById(R.id.select_item_price);
         selectItemPriceLay = (LinearLayout) findViewById(R.id.select_item_price_lay);
         selectItemSubmitButton = (BootstrapButton) findViewById(R.id.select_item_submit);
+        selectItemBillButton = (BootstrapButton) findViewById(R.id.select_item_bill);
 
         // presenter初期化
         itemPresenter = new ItemPresenter(getBaseContext(), this);
 
         // presenter描画
         itemPresenter.onCreate();
+
+        // ボタンの設定
+        selectItemSubmitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemPresenter.addItemInCart();
+            }
+        });
+        selectItemBillButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transitionPage(BillPage.class, itemPresenter.getCart());
+            }
+        });
 
         /////////////////////////////////////////////////////////////////////////
     }

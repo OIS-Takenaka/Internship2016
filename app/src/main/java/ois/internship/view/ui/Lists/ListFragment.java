@@ -1,6 +1,5 @@
 package ois.internship.view.ui.Lists;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +11,12 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import ois.internship.view.activity.BaseActivity;
+
 public class ListFragment extends android.app.Fragment implements OnRecyclerListener {
 
     private View view;
-    private Context context = null;
+    protected BaseActivity activity = null;
     private RecyclerView recyclerView;
     private ListRecyclerAdapter listRecyclerAdapter;
     private RecyclerFragmentListener fragmentListener;
@@ -53,19 +54,9 @@ public class ListFragment extends android.app.Fragment implements OnRecyclerList
         } else {
             fragmentListener = (RecyclerFragmentListener) context;
         }
-        this.context = context;
+        //this.context = context;
     }
 
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        Log.i("DEBUG","onAttach activity");
-        //if (!(activity instanceof RecyclerFragmentListener)) {
-        //    throw new UnsupportedOperationException("NOT SUPPORT!");
-        //} else {
-        //  fragmentListener = (RecyclerFragmentListener) activity;
-        //}
-        this.context = activity;
-    }
 
     /**
      *
@@ -79,7 +70,7 @@ public class ListFragment extends android.app.Fragment implements OnRecyclerList
         Log.i("DEBUG","onCreateView");
         this.view = inflater.inflate(listLayout.pLayout, container, false);
         recyclerView = (RecyclerView)this.view.findViewById(listLayout.outFrame);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
         return view;
     }
 
@@ -91,7 +82,7 @@ public class ListFragment extends android.app.Fragment implements OnRecyclerList
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Log.i("DEBUG","onActivityCreated");
-        listRecyclerAdapter = new ListRecyclerAdapter(context, data, this, listLayout);
+        listRecyclerAdapter = new ListRecyclerAdapter(activity, data, this, listLayout);
         recyclerView.setAdapter(listRecyclerAdapter);
     }
 

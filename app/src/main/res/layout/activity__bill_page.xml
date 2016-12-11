@@ -58,21 +58,27 @@
             android:orientation="vertical"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp">
-            <RadioButton
-                android:id="@+id/planets_spinner"
-                android:layout_width="match_parent"
+
+            <RadioGroup
+                android:id="@+id/radio_group"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textSize="21sp"
-                android:text="使用しない"/>
-            <RadioButton
-                android:id="@+id/toggle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textSize="21sp"
-                android:textAlignment="center"
-                android:text="1000円分使用"/>
+                android:layout_width="wrap_content">
+                <RadioButton
+                    android:id="@+id/not_use_point_toggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textSize="21sp"
+                    android:text="使用しない"/>
+                <RadioButton
+                    android:id="@+id/use_point_toggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textSize="21sp"
+                    android:textAlignment="center"
+                    android:text="1000円分使用"/>
+            </RadioGroup>
         </LinearLayout>
 
     </LinearLayout>
@@ -102,34 +108,80 @@
             android:elevation="1dp"
             android:background="@color/white"
             android:textAlignment="center"
-            android:text="お会計"
-            />
+            android:text="お会計" />
 
-        <GridLayout
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:padding="16dp"
-            android:orientation="vertical">
-
-        <TextView
+        <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:textSize="24sp"
-            android:text="合計金額"
-            />
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:gravity="right"
+                android:text="割引" />
+            <TextView
+                android:id="@+id/bill_discount_price"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textSize="28sp"
+                android:layout_weight="1"
+                android:text="○○円"
+                android:textColor="@color/bootstrap_brand_info"
+                android:gravity="right" />
+            </LinearLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:textSize="24sp"
-            android:text="送料"
-            />
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:gravity="right"
+                android:text="送料" />
+            <TextView
+                android:id="@+id/bill_deliver_price"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textSize="28sp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="○○円" />
+        </LinearLayout>
 
-        </GridLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="24dp"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:background="@drawable/group_bill">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:text="合計(税込)" />
+            <TextView
+                android:id="@+id/bill_total_price"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:textSize="34sp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="@color/bootstrap_brand_danger"
+                android:text="○○円"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -147,15 +199,6 @@
             app:bootstrapBrand="secondary"
             android:layout_weight="1"
             android:text="購入"/>
-
-        <!--com.beardedhen.androidbootstrap.BootstrapButton
-            android:layout_height="64sp"
-            android:layout_width="match_parent"
-            app:bootstrapSize="lg"
-            app:bootstrapBrand="primary"
-            android:layout_weight="1"
-            android:text="購入"/-->
-
 
     </LinearLayout>
 

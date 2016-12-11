@@ -15,10 +15,13 @@ public class ListLayout {
     int outFrame;
 
     // 画像
-    int imgLayout = R.id.simple_list_thumbnail;;
+    int imgLayout = R.id.simple_list_thumbnail;
 
     // テキスト
-    int textLayout = R.id.simple_list_textView;;
+    int titleLayout = R.id.simple_list_title;
+
+    // テキスト
+    int priceLayout = R.id.simple_list_price;
 
 
     // コンストラクタ

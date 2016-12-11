@@ -32,6 +32,10 @@ public class ItemRepository extends BaseRepository implements CardsInterface, Se
         this.itemList = data;
     }
 
+    public void add(ItemEntity data){
+        this.itemList.add(data);
+    }
+
     //=============================================================================
     // getter
     //=============================================================================
@@ -64,6 +68,16 @@ public class ItemRepository extends BaseRepository implements CardsInterface, Se
             cardData.add(new CardModel(getItem(i).getImg(), getItem(i).getName()));
         }
         return cardData;
+    }
+
+    public boolean delete(String name){
+        for(int i=0; i < dataSize(); i++) {
+            if(itemList.get(i).getName() == name) {
+                itemList.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
 }

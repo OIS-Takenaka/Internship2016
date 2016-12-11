@@ -14,7 +14,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public int pageID = 0;
     public ItemRepository intentData;
-    //ItemEntity intentData;
 
     // 前画面フラグ
     public boolean enableBackBotton = true;
@@ -55,11 +54,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @param c 遷移するクラス
      */
-    public void transitionPage(Class c) {
+    public void transitionPage(Class c, ItemRepository itemRepository) {
         Log.i("---", c.getName());
         try {
             Intent intent = new Intent(getBaseContext(), c);
-            intent.putExtra(getString(R.string.intentKEY), intentData);
+            intent.putExtra(getString(R.string.intentKEY), itemRepository);
             startActivityForResult(intent, RESULT_SUB_ACTIVITY);
         } catch (Exception e) {
             Intent intent = new Intent(getBaseContext(), c);
@@ -70,8 +69,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * intentのデータを取得
      */
-    public void getIntentData() {
+    public ItemRepository getIntentData() {
         intentData = (ItemRepository) getIntent().getSerializableExtra(getString(R.string.intentKEY));
+        return intentData;
     }
 
     /**
@@ -93,4 +93,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void setSelectItemNum(int selectItemNum) {
         Log.i("position", selectItemNum + "");
     }
+
+    public void onRefresh(){
+
+    };
 }

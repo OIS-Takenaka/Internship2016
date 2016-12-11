@@ -44,7 +44,6 @@ public class CardAdapter extends BaseAdapter implements AsyncImg {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Log.i("DEBUG", "getView");
-        //画像挿入
         convertView = layoutInflater.inflate(cardLayout.layout, parent, false);
         ViewHolder holder = new ViewHolder(convertView);
         holder.textView.setText(data.get(position).text);
@@ -71,7 +70,7 @@ public class CardAdapter extends BaseAdapter implements AsyncImg {
     @Override
     public void setImage(int position, Bitmap bitmap) {
         this.cache.put(position, bitmap);
-        notifyDataSetChanged();
+        activity.onRefresh();
     }
 
     public Bitmap getImage(int position) {

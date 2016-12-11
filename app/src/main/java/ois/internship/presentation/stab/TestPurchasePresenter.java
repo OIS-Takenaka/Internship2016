@@ -61,7 +61,11 @@ public class TestPurchasePresenter extends BasePresenter implements ListsInterfa
     public ArrayList<ListModel> getListData() {
         ArrayList<ListModel> listData = new ArrayList();
         for(int i=0; i < itemList.size(); i++) {
-            listData.add(new ListModel(itemList.get(i).getImg(), itemList.get(i).getName()));
+            listData.add(new ListModel(
+                    itemList.get(i).getImg(),
+                    itemList.get(i).getName(),
+                    String.valueOf(itemList.get(i).getPrice())
+            ));
         }
         return listData;
     }

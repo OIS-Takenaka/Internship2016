@@ -1,11 +1,10 @@
 package ois.internship.presentation;
 
 import android.content.Context;
+import android.util.Log;
 
-import java.util.Stack;
-
-import ois.internship.model.repository.item.CategoryRepository;
 import ois.internship.model.repository.item.ItemRepository;
+import ois.internship.presentation.logic.BillCalcManager;
 import ois.internship.view.activity.BillPage;
 import ois.internship.view.fragment.CustomListFragment;
 import ois.internship.view.ui.Lists.ListModel;
@@ -20,13 +19,11 @@ public class BillPresenter extends BasePresenter {
     private Context context;
 
     // Repository
-    private CategoryRepository category = new CategoryRepository();
-    private ItemRepository data = new ItemRepository();
+    private ItemRepository cart = new ItemRepository();
 
     // View
     private BillPage view;
 
-    private Stack<String> getCategory = new Stack<>();
 
     //------------------------------------------------------------------------------
     // Option Variable
@@ -34,6 +31,11 @@ public class BillPresenter extends BasePresenter {
     // Fragment
     private CustomListFragment billListFragment;
 
+    // calc logic
+    private BillCalcManager billCalcManager;
+
+    // using point flag
+    private boolean usePointFlag = false;
 
     //=============================================================================
     // Constracter
@@ -42,7 +44,6 @@ public class BillPresenter extends BasePresenter {
         this.context = context;
         this.view = view;
     }
-
 
     //=============================================================================
     // public
@@ -54,17 +55,32 @@ public class BillPresenter extends BasePresenter {
 
     @Override
     public void onRefresh() {
+        if(cart == null) return;
         billListFragment = new CustomListFragment(view);
-        billListFragment.addData(new ListModel(null, "AAA"));
-        billListFragment.addData(new ListModel(null, "BBB"));
-        billListFragment.addData(new ListModel(null, "CCC"));
-        //TabPagerAdpter adapter = new TabPagerAdpter(view, data.size());
-        //if(data.size() > 0)adapter.setData(data.get(0).getCardData());
+        for(int i=0; i < cart.dataSize(); i++){
+            billListFragment.addData(new ListModel(cart.getItem(i).getImg(), cart.getItem(i).getName(), cart.getItem(i).getPrice() + "円"));
+        }
+        setAccounting();
     }
 
+    public void setCart(ItemRepository cart) {
+        this.cart = cart;
+    }
+
+    public void setUsePointFlag(boolean usePointFlag) {
+        Log.i("DEBUG", "setUsePointFlag");
+        this.usePointFlag = usePointFlag;
+        view.onRefresh();
+    }
 
     //=============================================================================
     // private
     //=============================================================================
+    private void setAccounting(){
+        billCalcManager = new BillCalcManager(cart, usePointFlag);
+        view.billDiscountPrice.setText(billCalcManager.getBillDiscountPrice());
+        view.billDeliverPrice.setText(billCalcManager.getBillDeliverPrice());
+        view.billTotalPrice.setText(billCalcManager.getBillTotalPrice());
+    }
 }
 

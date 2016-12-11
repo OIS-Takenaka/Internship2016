@@ -6,6 +6,8 @@ import android.content.Loader;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.beardedhen.androidbootstrap.api.defaults.DefaultBootstrapBrand;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -37,6 +39,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         // Repository
         private CategoryRepository category = new CategoryRepository();
         private ArrayList<ItemRepository> data = new ArrayList<>();
+        private ItemRepository cart = new ItemRepository();
 
         // View
         private ItemPage view;
@@ -52,6 +55,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
 
         // selected item
         private int selectItemNum = -1;
+        private boolean cancelButtonFlag = false;
 
         //=============================================================================
         // Constracter
@@ -165,6 +169,33 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
             view.selectItemCategory.setVisibility(visibleFlag);
             view.selectItemPriceLay.setVisibility(visibleFlag);
             view.selectItemSubmitButton.setVisibility(visibleFlag);
+
+            // ボタン非活性
+            cancelButtonFlag = false;
+            for(int i=0; i < cart.dataSize(); i++) {
+                if(cart.getItem(i).getName() == data.get(0).getItem(selectItemNum).getName()) cancelButtonFlag = true;
+            }
+            if(cancelButtonFlag) {
+                view.selectItemSubmitButton.setText("　　　　キャンセルする　　　　");
+                view.selectItemSubmitButton.setBootstrapBrand(DefaultBootstrapBrand.DANGER);
+            } else {
+                view.selectItemSubmitButton.setText("　　　　カートに入れる　　　　");
+                view.selectItemSubmitButton.setBootstrapBrand(DefaultBootstrapBrand.INFO);
+            }
+        }
+
+        public void addItemInCart(){
+            Log.i("DEBUG", "addItemInCart");
+            if(cancelButtonFlag) {
+                cart.delete(data.get(0).getItem(selectItemNum).getName());
+            } else {
+                cart.add(data.get(0).getItem(selectItemNum));
+            }
+            onRefresh();
+        }
+
+        public ItemRepository getCart(){
+            return this.cart;
         }
 }
 

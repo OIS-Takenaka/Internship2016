@@ -30,7 +30,7 @@ public class TabPagerAdpter extends PagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "カテゴリ" + position;
+        return "商品一覧";
     }
 
     @Override

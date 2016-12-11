@@ -24,19 +24,30 @@
         app:bootstrapBrand="regular"
         app:hasBorder="false"/>
 
-    <TextView
-        android:id="@+id/simple_list_textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="16dp"
-        android:textSize="16dp"
-        android:gravity="center_vertical"
-        android:textColor="@color/bootstrap_gray_dark"/>
+        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp">
 
-    <!--com.beardedhen.androidbootstrap.AwesomeTextView
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        app:bootstrapBrand="success"
-        app:fontAwesomeIcon="fa_android" /-->
+        <TextView
+            android:id="@+id/simple_list_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:gravity="center_vertical"
+            android:layout_margin="8dp"
+            android:textColor="@color/bootstrap_gray_dark"/>
+        <TextView
+            android:id="@+id/simple_list_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:gravity="center_vertical"
+            android:layout_margin="8dp"
+            android:textColor="@color/bootstrap_brand_secondary_text"/>
+    </LinearLayout>
+
 </LinearLayout>
 </com.andexert.library.RippleView>

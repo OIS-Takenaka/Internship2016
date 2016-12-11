@@ -73,6 +73,7 @@
                 android:id="@+id/select_item_img"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:scaleType="centerCrop"
                 android:background="@color/bootstrap_gray_light"/>
 
             <LinearLayout
@@ -97,15 +98,30 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/select_item_submit"
-            android:layout_height="64sp"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            app:bootstrapSize="lg"
-            app:bootstrapBrand="secondary"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_alignParentBottom="true"
-            android:text="カートに入れる"/>
+            android:orientation="horizontal">
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/select_item_submit"
+                android:layout_height="64sp"
+                android:layout_width="wrap_content"
+                app:bootstrapSize="lg"
+                app:bootstrapBrand="info"
+                android:text="　　　　カートに入れる　　　　"/>
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/select_item_bill"
+                android:layout_height="64sp"
+                android:layout_width="match_parent"
+                app:bootstrapSize="lg"
+                app:bootstrapBrand="success"
+                android:text="お会計へ"/>
+
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>

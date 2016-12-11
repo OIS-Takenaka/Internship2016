@@ -11,11 +11,7 @@ import java.util.ArrayList;
 import ois.internship.model.entity.ItemEntity;
 import ois.internship.model.repository.item.ItemRepository;
 import ois.internship.view.activity.BaseActivity;
-import ois.internship.view.activity.BillPage;
 import ois.internship.view.activity.ItemPage;
-import ois.internship.view.activity.stab.Grid1;
-import ois.internship.view.activity.stab.Page2;
-import ois.internship.view.activity.stab.Page4;
 import ois.internship.view.fragment.AgreeDialogFragment;
 
 public class MainActivity extends BaseActivity {
@@ -45,22 +41,25 @@ public class MainActivity extends BaseActivity {
         /////////////////////////////////////////////////////////////////////////
         // ここから処理を書く
         /////////////////////////////////////////////////////////////////////////
-        //startActivity(new Intent(getApplicationContext(), Page3.class));
+        startActivity(new Intent(getApplicationContext(), ItemPage.class));
 
         button1 = (BootstrapButton)findViewById(R.id.button1);
+        /*
         button2 = (BootstrapButton)findViewById(R.id.button2);
         button3 = (BootstrapButton)findViewById(R.id.button3);
         button4 = (BootstrapButton)findViewById(R.id.button4);
         button5 = (BootstrapButton)findViewById(R.id.button5);
         button6 = (BootstrapButton)findViewById(R.id.button6);
+        */
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //startActivity(new Intent(getBaseContext(), Page1.class));
                 //startActivity(new Intent(getBaseContext(), ItemPage.class));
-                transitionPage(ItemPage.class);
+                transitionPage(ItemPage.class, null);
             }
         });
+        /*
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,8 +92,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(getBaseContext(), BillPage.class));
             }
         });
-
-        //new AsyncJsonGet(this).execute("List");
+        */
 
         ////////////////////////////////////////////////////////////////////////
     }
