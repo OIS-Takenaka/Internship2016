@@ -11,8 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import ois.internship.util.Util;
-
 public class MockAsyncTaskLoader extends BaseLoader{
 
     public MockAsyncTaskLoader(Context context, String url) {
@@ -22,11 +20,10 @@ public class MockAsyncTaskLoader extends BaseLoader{
     @Override
     public JSONArray loadInBackground() {
         Log.i("DEBUG", "loadInBackground" + url);
-        for(int i=5;i-->0;) new Util().waitTimer(1000);
         JSONArray data = null;
         try {
             // Json読み込み
-            InputStream input = context.getAssets().open("mock/" + url + ".json");
+            InputStream input = context.getAssets().open("mock/List.json");
             byte[] buffer = new byte[input.available()];
             input.read(buffer);
             input.close();

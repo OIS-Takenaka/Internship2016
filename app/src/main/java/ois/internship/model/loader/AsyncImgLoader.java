@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.widget.ImageView;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,14 +13,18 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import ois.internship.view.ui.If.AsyncImg;
+
 public class AsyncImgLoader extends AsyncTask<String, Void, Bitmap> {
 
-    Context context = null;
-    private ImageView imageView;
+    private Context context = null;
+    private AsyncImg asyncImg;
+    private int position = -1;
 
-    public AsyncImgLoader(Context context, ImageView imageView) {
+    public AsyncImgLoader(Context context, AsyncImg asyncImg, int position) {
         this.context = context;
-        this.imageView = imageView;
+        this.asyncImg = asyncImg;
+        this.position = position;
     }
 
     @Override
@@ -37,7 +41,10 @@ public class AsyncImgLoader extends AsyncTask<String, Void, Bitmap> {
             connection.connect();
             inputStream = connection.getInputStream();
 
-            bitmap = BitmapFactory.decodeStream(inputStream);
+            BitmapFactory.Options opt = new BitmapFactory.Options();
+            opt.inSampleSize = 4;
+            opt.inPurgeable = true;
+            bitmap = BitmapFactory.decodeStream(inputStream, null, opt);
         }
         catch (MalformedURLException exception){}
         catch (IOException exception){}
@@ -51,6 +58,7 @@ public class AsyncImgLoader extends AsyncTask<String, Void, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        this.imageView.setImageBitmap(bitmap);
+        this.asyncImg.setImage(position, bitmap);
+        Log.i("AsyncImg","onPostExecute");
     }
 }

@@ -1,83 +1,61 @@
 package ois.internship.model.repository.item;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import ois.internship.model.entity.ItemEntity;
 import ois.internship.model.repository.BaseRepository;
+import ois.internship.model.repository.injector.ItemRepositoryInjector;
 import ois.internship.view.ui.Cards.CardModel;
 import ois.internship.view.ui.If.CardsInterface;
 
-public class ItemRepository extends BaseRepository implements CardsInterface, Serializable{
+public class TestItemRepository extends BaseRepository implements ItemRepositoryInjector, CardsInterface {
 
-    private ArrayList<ItemEntity> itemList;
+    private ArrayList<ItemEntity> data;
 
 
     //=============================================================================
     // Constracter
     //=============================================================================
-    public ItemRepository(){
-        itemList = new ArrayList<>();
+    public TestItemRepository(){
+        data = new ArrayList<>();
     }
 
     //=============================================================================
     // public
     //=============================================================================
-
-    /**
-     * 商品セット
-     * @param data
-     */
     public void set(ArrayList<ItemEntity> data){
-        this.itemList = data;
+        this.data= data;
     }
 
-    public void add(ItemEntity data){
-        this.itemList.add(data);
+    public void add(String img, String name, String maker, String category, int price) {
+        data.add(new ItemEntity(img, name, maker, category, price));
+    }
+
+    public void delete(int index) {
+        data.remove(index);
+    }
+
+    public int dataSize() {
+        return data == null ? 0 : data.size();
     }
 
     //=============================================================================
     // getter
     //=============================================================================
-
-    /**
-     * 商品取得
-     * @param key
-     * @return
-     */
-    public ItemEntity getItem(int key){
-        return itemList.get(key);
+    public String getImg(int index){
+        return data.get(index).getImg();
     }
 
-
-    /**
-     * 商品数を取得
-     * @return
-     */
-    public int dataSize() {
-        return itemList == null ? 0 : itemList.size();
+    public String getName(int index){
+        return data.get(index).getName();
     }
 
-    /**
-     * 商品をカテゴリ毎でカード型にする
-     * @return
-     */
+    @Override
     public ArrayList<CardModel> getCardData() {
         ArrayList<CardModel> cardData = new ArrayList();
         for(int i=0; i < dataSize(); i++) {
-            cardData.add(new CardModel(getItem(i).getImg(), getItem(i).getName()));
+            cardData.add(new CardModel(getImg(i), getName(i)));
         }
         return cardData;
     }
-
-    public boolean delete(String name){
-        for(int i=0; i < dataSize(); i++) {
-            if(itemList.get(i).getName() == name) {
-                itemList.remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
-
 }

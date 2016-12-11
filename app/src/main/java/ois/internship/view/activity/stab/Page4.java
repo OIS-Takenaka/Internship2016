@@ -1,23 +1,24 @@
-package ois.internship.view.activity;
+package ois.internship.view.activity.stab;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
-import ois.internship.view.fragment.ToDoListListFragment;
-import ois.internship.view.ui.Lists.ListModel;
+import ois.internship.view.activity.BaseActivity;
+import ois.internship.view.ui.tab.TabPagerAdpter;
 
-public class Page1 extends BaseActivity {
+public class Page4 extends BaseActivity {
 
     BootstrapButton button;
-    ToDoListListFragment toDoListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__page1);
+        setContentView(R.layout.activity__page4);
 
         /////////////////////////////////////////////////////////////////////////
         // ここから処理を書く
@@ -26,16 +27,16 @@ public class Page1 extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(getBaseContext(), Page2.class));
                 finish();
             }
         });
 
-        toDoListFragment = new ToDoListListFragment(this);
-        toDoListFragment.addData(new ListModel(null, "AAA"));
-        toDoListFragment.addData(new ListModel(null, "BBB"));
-        toDoListFragment.addData(new ListModel(null, "CCC"));
+        TabPagerAdpter adapter = new TabPagerAdpter(this, 10);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.setAdapter(adapter);
 
         /////////////////////////////////////////////////////////////////////////
     }

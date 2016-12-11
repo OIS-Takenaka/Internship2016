@@ -19,7 +19,6 @@ public class CardLayout {
     // テキスト
     int textLayout = R.id.card_list_textView;
 
-
     // コンストラクタ
     public CardLayout(int gridViewLayout){
         Log.i("DEBUG","TempListLayout");

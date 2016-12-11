@@ -1,4 +1,4 @@
-package ois.internship.view.activity;
+package ois.internship.view.activity.stab;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,7 @@ import android.view.View;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
+import ois.internship.view.activity.BaseActivity;
 
 public class Page3 extends BaseActivity {
 

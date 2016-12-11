@@ -16,19 +16,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.Page1"
+            android:name=".view.activity.stab.Page1"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.activity.Page2"
+            android:name=".view.activity.stab.Page2"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.activity.Page3"
+            android:name=".view.activity.stab.Page3"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.activity.Page4"
+            android:name=".view.activity.stab.Page4"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.activity.Grid1"
+            android:name=".view.activity.ItemPage"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".view.activity.BillPage"
             android:screenOrientation="landscape"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

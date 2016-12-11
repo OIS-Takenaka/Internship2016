@@ -7,19 +7,20 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import ois.internship.R;
+import ois.internship.view.activity.BaseActivity;
 import ois.internship.view.ui.Lists.ListFragment;
 import ois.internship.view.ui.Lists.ListLayout;
 import ois.internship.view.ui.Lists.ListModel;
 
-public class ToDoListListFragment extends ListFragment {
+public class CustomListFragment extends ois.internship.view.ui.Lists.ListFragment {
 
     FragmentTransaction fragmentTransaction;
     int fragmentTransactionFrame = R.id.to_do_list;
 
 
-    public ToDoListListFragment(Activity activity){
+    public CustomListFragment(BaseActivity activity){
         Log.i("DEBUG","ToDoLilstFragment");
-
+        this.activity = activity;
         listLayout = new ListLayout(R.id.todo_list_view);
         fragmentTransaction = activity.getFragmentManager().beginTransaction();
         fragmentTransaction.add(fragmentTransactionFrame, this).commit();
@@ -27,7 +28,7 @@ public class ToDoListListFragment extends ListFragment {
 
     public void setData(ArrayList<ListModel> data){
         for(int i=0;i < data.size(); i++) {
-            addData(new ListModel(data.get(i).getImg(), data.get(i).getText()));
+            addData(new ListModel(data.get(i).getImg(), data.get(i).getTitle(), data.get(i).getPrice()));
         }
 
     }

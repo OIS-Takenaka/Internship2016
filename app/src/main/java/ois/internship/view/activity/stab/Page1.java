@@ -1,23 +1,24 @@
-package ois.internship.view.activity;
+package ois.internship.view.activity.stab;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
-import ois.internship.view.ui.tab.TabPagerAdpter;
+import ois.internship.view.activity.BaseActivity;
+import ois.internship.view.fragment.CustomListFragment;
+import ois.internship.view.ui.Lists.ListModel;
 
-public class Page4 extends BaseActivity {
+public class Page1 extends BaseActivity {
 
     BootstrapButton button;
+    CustomListFragment toDoCustomListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__page4);
+        setContentView(R.layout.activity__page1);
 
         /////////////////////////////////////////////////////////////////////////
         // ここから処理を書く
@@ -26,16 +27,16 @@ public class Page4 extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //startActivity(new Intent(getBaseContext(), Page2.class));
                 finish();
             }
         });
 
-        TabPagerAdpter adapter = new TabPagerAdpter(this, 10);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        toDoCustomListFragment = new CustomListFragment(this);
+        toDoCustomListFragment.addData(new ListModel(null, "AAA", "111"));
+        toDoCustomListFragment.addData(new ListModel(null, "BBB", "222"));
+        toDoCustomListFragment.addData(new ListModel(null, "CCC", "333"));
 
-        tabLayout.setupWithViewPager(viewPager);
-        viewPager.setAdapter(adapter);
 
         /////////////////////////////////////////////////////////////////////////
     }

@@ -9,6 +9,7 @@ import android.widget.GridView;
 import java.util.ArrayList;
 
 import ois.internship.R;
+import ois.internship.view.activity.BaseActivity;
 import ois.internship.view.fragment.CardsFragment;
 import ois.internship.view.ui.Cards.CardFragment;
 import ois.internship.view.ui.Cards.CardModel;
@@ -18,6 +19,10 @@ public class TabPagerAdpter extends PagerAdapter {
     Activity activity;
     int numOfTabs = 0;
 
+    ArrayList<CardModel> data = new ArrayList<CardModel>();
+    public CardFragment cardsFragment;
+
+
     public TabPagerAdpter(Activity activity, int numOfTabs){
         this.activity = activity;
         this.numOfTabs = numOfTabs;
@@ -25,20 +30,20 @@ public class TabPagerAdpter extends PagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "カテゴリ" + position;
+        return "商品一覧";
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View v = activity.getLayoutInflater().inflate(R.layout.component__grid, null);
-
-        ArrayList<CardModel> data = new ArrayList<CardModel>();
-        data.add(new CardModel(null, "AAAAA"));
-        data.add(new CardModel(null, "BBBBB"));
-        CardFragment cardsFragment = new CardsFragment(activity, (GridView)v.findViewById(R.id.card_frame));
+        cardsFragment = new CardsFragment((BaseActivity) activity, (GridView)v.findViewById(R.id.card_frame));
         cardsFragment.setData(data);
         container.addView(v);
         return v;
+    }
+
+    public void setData(ArrayList<CardModel> data){
+        this.data = data;
     }
 
     @Override

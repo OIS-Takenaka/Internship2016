@@ -13,7 +13,7 @@ public interface ItemRepositoryInjector extends CardsInterface {
     //=============================================================================
     void set(ArrayList<ItemEntity> data);
 
-    void add(String img, String name, String maker, String category, float price);
+    void add(String img, String name, String maker, String category, int price);
 
     void delete(int index);
 
