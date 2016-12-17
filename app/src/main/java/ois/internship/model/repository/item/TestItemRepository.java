@@ -54,7 +54,7 @@ public class TestItemRepository extends BaseRepository implements ItemRepository
     public ArrayList<CardModel> getCardData() {
         ArrayList<CardModel> cardData = new ArrayList();
         for(int i=0; i < dataSize(); i++) {
-            cardData.add(new CardModel(getImg(i), getName(i)));
+            cardData.add(new CardModel(getImg(i), getName(i), false));
         }
         return cardData;
     }

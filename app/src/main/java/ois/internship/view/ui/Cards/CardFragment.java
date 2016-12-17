@@ -36,8 +36,13 @@ public abstract class CardFragment extends Fragment {
     }
 
     public void reload(){
-        adapter = new CardAdapter(activity, data, cardLayout);
-        gridView.setAdapter(adapter);
+        if(adapter == null){
+            adapter = new CardAdapter(activity, data, cardLayout);
+            gridView.setAdapter(adapter);
+        } else {
+            adapter.notifyDataSetChanged();
+            gridView.invalidateViews();
+        }
     }
 
     public void setData(ArrayList<CardModel> data){

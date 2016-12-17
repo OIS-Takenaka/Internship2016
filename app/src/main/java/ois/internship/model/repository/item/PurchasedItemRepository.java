@@ -1,22 +1,18 @@
 package ois.internship.model.repository.item;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import ois.internship.model.entity.ItemEntity;
-import ois.internship.model.repository.BaseRepository;
-import ois.internship.view.ui.Cards.CardModel;
-import ois.internship.view.ui.If.CardsInterface;
+import ois.internship.model.entity.PurchasedItemEntity;
 
-public class ItemRepository extends BaseRepository implements CardsInterface, Serializable{
+public class PurchasedItemRepository extends ItemRepository {
 
-    private ArrayList<ItemEntity> itemList;
-
+    private ArrayList<PurchasedItemEntity> itemList;
 
     //=============================================================================
     // Constracter
     //=============================================================================
-    public ItemRepository(){
+    public PurchasedItemRepository(){
         itemList = new ArrayList<>();
     }
 
@@ -28,12 +24,9 @@ public class ItemRepository extends BaseRepository implements CardsInterface, Se
      * 商品セット
      * @param data
      */
-    public void set(ArrayList<ItemEntity> data){
-        this.itemList = data;
-    }
-
-    public void add(ItemEntity data){
-        this.itemList.add(data);
+    public void add(ItemEntity data, int amount){
+        PurchasedItemEntity temp = new PurchasedItemEntity(data, amount);
+        this.itemList.add(temp);
     }
 
     //=============================================================================
@@ -45,10 +38,9 @@ public class ItemRepository extends BaseRepository implements CardsInterface, Se
      * @param key
      * @return
      */
-    public ItemEntity getItem(int key){
+    public PurchasedItemEntity getItem(int key){
         return itemList.get(key);
     }
-
 
     /**
      * 商品数を取得
@@ -58,19 +50,7 @@ public class ItemRepository extends BaseRepository implements CardsInterface, Se
         return itemList == null ? 0 : itemList.size();
     }
 
-    /**
-     * 商品をカテゴリ毎でカード型にする
-     * @return
-     */
-    public ArrayList<CardModel> getCardData() {
-        ArrayList<CardModel> cardData = new ArrayList();
-        for(int i=0; i < dataSize(); i++) {
-            cardData.add(new CardModel(getItem(i).getImg(), getItem(i).getName(), false));
-        }
-        return cardData;
-    }
-
-
+    @Override
     public boolean delete(String name) {
         for(int i=0; i < dataSize(); i++) {
             if(itemList.get(i).getName() == name) {
@@ -82,3 +62,4 @@ public class ItemRepository extends BaseRepository implements CardsInterface, Se
     }
 
 }
+

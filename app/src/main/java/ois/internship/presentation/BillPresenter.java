@@ -3,7 +3,7 @@ package ois.internship.presentation;
 import android.content.Context;
 import android.util.Log;
 
-import ois.internship.model.repository.item.ItemRepository;
+import ois.internship.model.repository.item.PurchasedItemRepository;
 import ois.internship.presentation.logic.BillCalcManager;
 import ois.internship.view.activity.BillPage;
 import ois.internship.view.fragment.CustomListFragment;
@@ -19,7 +19,7 @@ public class BillPresenter extends BasePresenter {
     private Context context;
 
     // Repository
-    private ItemRepository cart = new ItemRepository();
+    private PurchasedItemRepository cart = new PurchasedItemRepository();
 
     // View
     private BillPage view;
@@ -63,7 +63,7 @@ public class BillPresenter extends BasePresenter {
         setAccounting();
     }
 
-    public void setCart(ItemRepository cart) {
+    public void setCart(PurchasedItemRepository cart) {
         this.cart = cart;
     }
 

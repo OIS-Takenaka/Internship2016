@@ -8,12 +8,13 @@ import android.view.MenuItem;
 
 import ois.internship.R;
 import ois.internship.model.repository.item.ItemRepository;
+import ois.internship.model.repository.item.PurchasedItemRepository;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
 
     public int pageID = 0;
-    public ItemRepository intentData;
+    public PurchasedItemRepository intentData;
 
     // 前画面フラグ
     public boolean enableBackBotton = true;
@@ -69,8 +70,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * intentのデータを取得
      */
-    public ItemRepository getIntentData() {
-        intentData = (ItemRepository) getIntent().getSerializableExtra(getString(R.string.intentKEY));
+    public PurchasedItemRepository getIntentData() {
+        intentData = (PurchasedItemRepository) getIntent().getSerializableExtra(getString(R.string.intentKEY));
         return intentData;
     }
 
@@ -82,7 +83,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
         Bundle bundle = intent.getExtras();
         if (resultCode == RESULT_OK && requestCode == RESULT_SUB_ACTIVITY && intent != null) {
-            intentData = (ItemRepository) getIntent().getSerializableExtra(getString(R.string.intentKEY));
+            intentData = (PurchasedItemRepository) getIntent().getSerializableExtra(getString(R.string.intentKEY));
             Log.w("intentData", "getIntentData");
         }
     }

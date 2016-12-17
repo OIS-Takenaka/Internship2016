@@ -38,18 +38,18 @@ public class Page2 extends BaseActivity {
         });
 
         ArrayList<CardModel> data = new ArrayList<CardModel>();
-        data.add(new CardModel(null, "AAAAA"));
-        data.add(new CardModel(null, "BBBBB"));
-        data.add(new CardModel(null, "CCCCC"));
-        data.add(new CardModel(null, "AAAAA"));
-        data.add(new CardModel(null, "BBBBB"));
-        data.add(new CardModel(null, "CCCCC"));
-        data.add(new CardModel(null, "AAAAA"));
-        data.add(new CardModel(null, "BBBBB"));
-        data.add(new CardModel(null, "CCCCC"));
-        data.add(new CardModel(null, "AAAAA"));
-        data.add(new CardModel(null, "BBBBB"));
-        data.add(new CardModel(null, "CCCCC"));
+//        data.add(new CardModel(null, "AAAAA"));
+//        data.add(new CardModel(null, "BBBBB"));
+//        data.add(new CardModel(null, "CCCCC"));
+//        data.add(new CardModel(null, "AAAAA"));
+//        data.add(new CardModel(null, "BBBBB"));
+//        data.add(new CardModel(null, "CCCCC"));
+//        data.add(new CardModel(null, "AAAAA"));
+//        data.add(new CardModel(null, "BBBBB"));
+//        data.add(new CardModel(null, "CCCCC"));
+//        data.add(new CardModel(null, "AAAAA"));
+//        data.add(new CardModel(null, "BBBBB"));
+//        data.add(new CardModel(null, "CCCCC"));
 
 
         //GridView gridView = (GridView) findViewById(R.id.card_frame);

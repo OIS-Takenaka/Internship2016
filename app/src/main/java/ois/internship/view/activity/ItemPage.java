@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -25,10 +26,14 @@ public class ItemPage extends BaseActivity {
     public ImageView selectItemImg;
     public TextView selectItemCategory;
     public TextView selectItemTitle;
-    public TextView selectItemPrice;
     public LinearLayout selectItemPriceLay;
+    public TextView selectItemPrice;
+    public LinearLayout selectItemAmountLay;
+    public TextView selectItemAmount;
+    public Spinner selectItemAmountSpinner;
     public BootstrapButton selectItemSubmitButton;
     public BootstrapButton selectItemBillButton;
+    public LinearLayout selectItemBillBatchLay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +56,12 @@ public class ItemPage extends BaseActivity {
         selectItemTitle = (TextView) findViewById(R.id.select_item_title);
         selectItemPrice = (TextView) findViewById(R.id.select_item_price);
         selectItemPriceLay = (LinearLayout) findViewById(R.id.select_item_price_lay);
+        selectItemAmountSpinner = (Spinner) findViewById(R.id.select_item_amount_spinner);
+        selectItemAmount = (TextView) findViewById(R.id.select_item_amount);
+        selectItemAmountLay = (LinearLayout) findViewById(R.id.select_item_amount_lay);
         selectItemSubmitButton = (BootstrapButton) findViewById(R.id.select_item_submit);
         selectItemBillButton = (BootstrapButton) findViewById(R.id.select_item_bill);
+        selectItemBillBatchLay = (LinearLayout) findViewById(R.id.select_item_bill_batch_lay);
 
         // presenter初期化
         itemPresenter = new ItemPresenter(getBaseContext(), this);

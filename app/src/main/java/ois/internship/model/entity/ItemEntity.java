@@ -5,19 +5,19 @@ import java.io.Serializable;
 public class ItemEntity extends BaseEntity implements Serializable{
 
     // 画像
-    private String img = null;
+    protected String img = null;
 
     // 商品名
-    private String name = null;
+    protected String name = null;
 
     // メーカー
-    private String maker = null;
+    protected String maker = null;
 
     // カテゴリー
-    private String category = null;
+    protected String category = null;
 
     // 価格
-    private int price = -1;
+    protected int price = -1;
 
     //=================================================================
     // CONSTRACTER

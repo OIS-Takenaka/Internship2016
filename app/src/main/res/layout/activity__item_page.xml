@@ -39,9 +39,8 @@
         android:layout_width="450dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:background="@color/bootstrap_well_background"
+        android:background="@color/white"
         android:elevation="16dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,50 +76,127 @@
                 android:background="@color/bootstrap_gray_light"/>
 
             <LinearLayout
-                android:id="@+id/select_item_price_lay"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
+                android:padding="8dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/select_item_price_lay"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:paddingRight="16dp"
-                    android:text="価格"/>
-                <TextView
-                    android:id="@+id/select_item_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:textColor="@color/bootstrap_brand_danger"
-                    android:text="￥ 1,000"/>
-            </LinearLayout>
-        </LinearLayout>
+                    android:padding="8dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:paddingRight="16dp"
+                        android:text="価格"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/bootstrap_brand_danger"
+                        android:text="￥ "/>
+                    <TextView
+                        android:id="@+id/select_item_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:textColor="@color/bootstrap_brand_danger"
+                        android:text="1,000"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/bootstrap_brand_danger"
+                        android:text=" (税抜)"/>
+                </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/select_item_amount_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:paddingRight="16dp"
+                        android:text="数量"/>
+                    <Spinner
+                        android:id="@+id/select_item_amount_spinner"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"/>
+                    <TextView
+                        android:id="@+id/select_item_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:textColor="@color/black"
+                        android:text="10"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        android:text=" 個"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/select_item_submit"
-                android:layout_height="64sp"
-                android:layout_width="wrap_content"
-                app:bootstrapSize="lg"
-                app:bootstrapBrand="info"
-                android:text="　　　　カートに入れる　　　　"/>
-            <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/select_item_bill"
-                android:layout_height="64sp"
+            <LinearLayout
                 android:layout_width="match_parent"
-                app:bootstrapSize="lg"
-                app:bootstrapBrand="success"
-                android:text="お会計へ"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/select_item_submit"
+                    android:layout_height="64sp"
+                    android:layout_width="wrap_content"
+                    app:bootstrapSize="lg"
+                    app:bootstrapBrand="info"
+                    android:text="　　　　カートに入れる　　　　"/>
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/select_item_bill"
+                    android:layout_height="64sp"
+                    android:layout_width="match_parent"
+                    app:bootstrapSize="lg"
+                    app:bootstrapBrand="success"
+                    android:text="お会計へ"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/select_item_bill_batch_lay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingRight="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="16dp"
+                android:paddingTop="8dp"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:background="@drawable/circle_button"
+                android:text="注文済"/>
         </LinearLayout>
     </RelativeLayout>
 

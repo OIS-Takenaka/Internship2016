@@ -16,6 +16,9 @@ public class CardLayout {
     // 画像
     int imgLayout = R.id.card_list_image;
 
+    // テキストのレイアウト
+    int textLayoutFlame = R.id.card_list_text_lay;
+
     // テキスト
     int textLayout = R.id.card_list_textView;
 

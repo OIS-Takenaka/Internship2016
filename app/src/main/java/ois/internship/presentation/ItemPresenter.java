@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Loader;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import com.beardedhen.androidbootstrap.api.defaults.DefaultBootstrapBrand;
 
@@ -21,10 +22,13 @@ import ois.internship.model.loader.BaseLoader;
 import ois.internship.model.loader.MockAsyncTaskLoader;
 import ois.internship.model.repository.item.CategoryRepository;
 import ois.internship.model.repository.item.ItemRepository;
+import ois.internship.model.repository.item.PurchasedItemRepository;
 import ois.internship.view.activity.ItemPage;
 import ois.internship.view.fragment.CardsFragment;
+import ois.internship.view.ui.Cards.CardModel;
 import ois.internship.view.ui.tab.TabPagerAdpter;
 
+import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
@@ -45,7 +49,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         // Repository
         private CategoryRepository category = new CategoryRepository();
         private ArrayList<ItemRepository> data = new ArrayList<>();
-        private ItemRepository cart = new ItemRepository();
+        private PurchasedItemRepository cart = new PurchasedItemRepository();
 
         // View
         private ItemPage view;
@@ -62,6 +66,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         // selected item
         private int selectItemNum = -1;
         private boolean cancelButtonFlag = false;
+        private String[] canSelectAmout = new String[10];
 
         //=============================================================================
         // Constracter
@@ -80,6 +85,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         public void onCreate(){
             getCategory.push("food");
             getCategory.push("clothes");
+            for(int i = 0; i < 10; i++) canSelectAmout[i] = String.valueOf(i);
             onCreateLoader();
             view.onRefresh();
         }
@@ -87,7 +93,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         @Override
         public void onRefresh() {
             tabPagerAdpter = new TabPagerAdpter(view, data.size());
-            if(data.size() > 0)tabPagerAdpter.setData(data.get(0).getCardData());
+            if(data.size() > 0) tabPagerAdpter.setData(getCardData());
             view.tabLayout.setupWithViewPager(view.viewPager);
             view.viewPager.setAdapter(tabPagerAdpter);
             this.setSide();
@@ -98,6 +104,16 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         //=============================================================================
         // モックデータ
         private void loadMock(){}
+
+        private ArrayList<CardModel> getCardData(){
+            ArrayList<CardModel> temp = data.get(0).getCardData();
+            for(int i=0; i < cart.dataSize(); i++) for(int j=0; j < temp.size(); j++) {
+                if(cart.getItem(i).getName() == temp.get(j).text) {
+                    temp.set(j, new CardModel(temp.get(j).img, temp.get(j).text, true));
+                }
+            }
+            return temp;
+        }
 
         //=============================================================================
         // Loader
@@ -166,8 +182,9 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
                 setVisibilitySide(true);
                 view.selectItemCategory.setText(data.get(0).getItem(selectItemNum).getCategory());
                 view.selectItemTitle.setText(data.get(0).getItem(selectItemNum).getName());
-                view.selectItemPrice.setText("￥ " + data.get(0).getItem(selectItemNum).getPrice());
+                view.selectItemPrice.setText(data.get(0).getItem(selectItemNum).getPrice() + "");
                 view.selectItemImg.setImageBitmap(tabPagerAdpter.cardsFragment.adapter.getImage(selectItemNum));
+                view.selectItemAmountSpinner.setAdapter(new ArrayAdapter<String>(view, R.layout.component__spinner, canSelectAmout));
             } else {
                 setVisibilitySide(false);
                 view.selectItemTitle.setText("商品を選択してください。");
@@ -179,17 +196,27 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
             view.selectItemImg.setVisibility(visibleFlag);
             view.selectItemCategory.setVisibility(visibleFlag);
             view.selectItemPriceLay.setVisibility(visibleFlag);
+            view.selectItemAmountLay.setVisibility(visibleFlag);
             view.selectItemSubmitButton.setVisibility(visibleFlag);
 
             // ボタン非活性
             cancelButtonFlag = false;
             for(int i=0; i < cart.dataSize(); i++) {
-                if(cart.getItem(i).getName() == data.get(0).getItem(selectItemNum).getName()) cancelButtonFlag = true;
+                if(cart.getItem(i).getName() == data.get(0).getItem(selectItemNum).getName()){
+                    view.selectItemAmount.setText(cart.getItem(i).getAmount() + "");
+                    cancelButtonFlag = true;
+                }
             }
             if(cancelButtonFlag) {
+                view.selectItemAmountSpinner.setVisibility(GONE);
+                view.selectItemAmount.setVisibility(VISIBLE);
+                view.selectItemBillBatchLay.setVisibility(VISIBLE);
                 view.selectItemSubmitButton.setText("　　　　キャンセルする　　　　");
                 view.selectItemSubmitButton.setBootstrapBrand(DefaultBootstrapBrand.DANGER);
             } else {
+                view.selectItemAmountSpinner.setVisibility(VISIBLE);
+                view.selectItemAmount.setVisibility(GONE);
+                view.selectItemBillBatchLay.setVisibility(GONE);
                 view.selectItemSubmitButton.setText("　　　　カートに入れる　　　　");
                 view.selectItemSubmitButton.setBootstrapBrand(DefaultBootstrapBrand.INFO);
             }
@@ -200,12 +227,15 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
             if(cancelButtonFlag) {
                 cart.delete(data.get(0).getItem(selectItemNum).getName());
             } else {
-                cart.add(data.get(0).getItem(selectItemNum));
+                cart.add(
+                        data.get(0).getItem(selectItemNum),
+                        Integer.parseInt((String) view.selectItemAmountSpinner.getSelectedItem())
+                );
             }
             this.setSide();
         }
 
-        public ItemRepository getCart(){
+        public PurchasedItemRepository getCart(){
             return this.cart;
         }
 }

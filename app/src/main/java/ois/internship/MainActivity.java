@@ -9,7 +9,7 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import java.util.ArrayList;
 
 import ois.internship.model.entity.ItemEntity;
-import ois.internship.model.repository.item.ItemRepository;
+import ois.internship.model.repository.item.PurchasedItemRepository;
 import ois.internship.view.activity.BaseActivity;
 import ois.internship.view.activity.ItemPage;
 import ois.internship.view.fragment.AgreeDialogFragment;
@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity {
     AgreeDialogFragment agreeDialogFragment;
 
     MainActivity() {
-        intentData = new ItemRepository();
+        intentData = new PurchasedItemRepository();
         ArrayList<ItemEntity> item = new ArrayList<>();
         item.add(new ItemEntity("AAA","BBB"));
         intentData.set(item);

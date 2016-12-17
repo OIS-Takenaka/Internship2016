@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ois.internship.R;
 import ois.internship.model.loader.AsyncImgLoader;
 import ois.internship.view.activity.BaseActivity;
 import ois.internship.view.ui.If.AsyncImg;
@@ -48,6 +50,15 @@ public class CardAdapter extends BaseAdapter implements AsyncImg {
         ViewHolder holder = new ViewHolder(convertView);
         holder.textView.setText(data.get(position).text);
         holder.imageView.setImageBitmap((Bitmap)cache.get(position));
+        if(data.get(position).effectFlag){
+            holder.textLayout.setBackgroundColor(
+                    activity.getResources().getColor(R.color.card_text_bg_effect)
+            );
+        } else {
+            holder.textLayout.setBackgroundColor(
+                    activity.getResources().getColor(R.color.card_text_bg)
+            );
+        }
         return convertView;
     }
 
@@ -84,11 +95,13 @@ public class CardAdapter extends BaseAdapter implements AsyncImg {
 
         TextView textView;
         ImageView imageView;
+        LinearLayout textLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(cardLayout.textLayout);
             imageView = (ImageView) itemView.findViewById(cardLayout.imgLayout);
+            textLayout = (LinearLayout) itemView.findViewById(cardLayout.textLayoutFlame);
         }
     }
 
