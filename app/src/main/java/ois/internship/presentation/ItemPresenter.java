@@ -34,7 +34,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
         //=============================================================================
         // TEST FLAG
         //=============================================================================
-        boolean TEST_FLAG = false;
+        boolean TEST_FLAG = true;
 
         //=============================================================================
         // Variable

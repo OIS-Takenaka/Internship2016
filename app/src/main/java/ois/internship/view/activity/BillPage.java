@@ -54,7 +54,6 @@ public class BillPage extends BaseActivity implements RadioGroup.OnCheckedChange
      */
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        Log.i("CCCCCCCCCCC",checkedId +"");
         switch (checkedId) {
             case R.id.not_use_point_toggle:
                 billPresenter.setUsePointFlag(false);

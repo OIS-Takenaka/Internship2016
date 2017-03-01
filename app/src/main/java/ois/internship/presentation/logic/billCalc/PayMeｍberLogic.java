@@ -1,9 +1,8 @@
 package ois.internship.presentation.logic.billCalc;
 
-
 import ois.internship.presentation.logic.injector.BillCalcInjectorIf;
 
-public class FreeMeｍberLogic implements BillCalcInjectorIf {
+public class PayMeｍberLogic implements BillCalcInjectorIf{
 
     // 現在日付
     private int day = 1;
@@ -17,7 +16,7 @@ public class FreeMeｍberLogic implements BillCalcInjectorIf {
     // 合計金額
     private int billTotalPrice = 0;
 
-    public FreeMeｍberLogic(int[] price, boolean usePointFlag) {
+    public PayMeｍberLogic(int[] price, boolean usePointFlag) {
 
         billTotalPrice = 0;
 
@@ -26,7 +25,6 @@ public class FreeMeｍberLogic implements BillCalcInjectorIf {
         } else {
             billDiscountPrice = 0;
         }
-
 
         for(int i=0; i < price.length; i++) {
             billTotalPrice += price[i];

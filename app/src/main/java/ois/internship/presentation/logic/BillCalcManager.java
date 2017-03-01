@@ -1,7 +1,7 @@
 package ois.internship.presentation.logic;
 
 import ois.internship.model.repository.item.ItemRepository;
-import ois.internship.presentation.logic.billCalc.FreeMeｍberLogic;
+import ois.internship.presentation.logic.billCalc.PayMeｍberLogic;
 
 public class BillCalcManager {
 
@@ -12,7 +12,15 @@ public class BillCalcManager {
     public BillCalcManager(ItemRepository cart, boolean usePointFlag){
         int[] price = new int[cart.dataSize()];
         for(int i=0 ; i<cart.dataSize(); i++) price[i]  = cart.getItem(i).getPrice();
-        FreeMeｍberLogic logic = new FreeMeｍberLogic(price, usePointFlag);
+
+        PayMeｍberLogic logic = new PayMeｍberLogic(price, usePointFlag);;
+
+        if(false) {
+            // logic = new FreeMeｍberLogic(price, usePointFlag);
+        } else {
+            // logic = new PayMeｍberLogic(price, usePointFlag);
+        }
+
         billDiscountPrice = logic.getBillDiscountPrice();
         billDeliverPrice = logic.getBillDeliverPrice();
         billTotalPrice = logic.getBillTotalPrice();
@@ -25,6 +33,6 @@ public class BillCalcManager {
         return billDeliverPrice + "円";
     }
     public String getBillTotalPrice() {
-        return billTotalPrice + "円";
+        return billTotalPrice + "円 ";
     }
 }
