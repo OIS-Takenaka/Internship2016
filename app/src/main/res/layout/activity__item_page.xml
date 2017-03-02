@@ -48,6 +48,26 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/change_day_button"
+                    android:layout_height="48sp"
+                    android:layout_width="wrap_content"
+                    app:bootstrapSize="lg"
+                    app:bootstrapBrand="regular"
+                    android:text="4月1日"/>
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/change_member_button"
+                    android:layout_height="48sp"
+                    android:layout_width="wrap_content"
+                    app:bootstrapSize="lg"
+                    app:bootstrapBrand="regular"
+                    android:text="無料会員"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"

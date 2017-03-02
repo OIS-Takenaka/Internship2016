@@ -1,9 +1,9 @@
 package ois.internship.presentation.logic.billCalc;
 
 
-import ois.internship.presentation.logic.injector.BillCalcInjectorIf;
+import ois.internship.presentation.logic.injector.BillCalcInjector;
 
-public class FreeMeｍberLogic implements BillCalcInjectorIf {
+public class FreeMeｍberLogic implements BillCalcInjector {
 
     // 現在日付
     private int day = 1;
@@ -17,12 +17,19 @@ public class FreeMeｍberLogic implements BillCalcInjectorIf {
     // 合計金額
     private int billTotalPrice = 0;
 
+    // 残りポイント数
+    private int billRemainPoint = 0;
+
+    //=================================================================
+    // 無料会員の清算
+    //=================================================================
     public FreeMeｍberLogic(int[] price, boolean usePointFlag) {
 
         billTotalPrice = 0;
 
         if(usePointFlag){
             billDiscountPrice = -1000;
+            billRemainPoint = -1000;
         } else {
             billDiscountPrice = 0;
         }
@@ -40,6 +47,8 @@ public class FreeMeｍberLogic implements BillCalcInjectorIf {
 
         billTotalPrice += billDiscountPrice;
         billTotalPrice += billDeliverPrice;
+
+        billDiscountPrice = (int) billTotalPrice / 100;
     }
 
     public int getBillDiscountPrice() {
@@ -50,5 +59,8 @@ public class FreeMeｍberLogic implements BillCalcInjectorIf {
     }
     public int getBillTotalPrice() {
         return billTotalPrice;
+    }
+    public int getBillRemainPoint() {
+        return billRemainPoint;
     }
 }

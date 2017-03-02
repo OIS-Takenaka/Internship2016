@@ -81,6 +81,7 @@ public class BillPresenter extends BasePresenter {
         view.billDiscountPrice.setText(billCalcManager.getBillDiscountPrice());
         view.billDeliverPrice.setText(billCalcManager.getBillDeliverPrice());
         view.billTotalPrice.setText(billCalcManager.getBillTotalPrice());
+        view.billRemainPoint.setText(billCalcManager.getBillRemainPoint());
     }
 }
 

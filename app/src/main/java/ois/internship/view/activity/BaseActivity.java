@@ -80,7 +80,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        Bundle bundle = intent.getExtras();
+        // Bundle bundle = intent.getExtras();
         if (resultCode == RESULT_OK && requestCode == RESULT_SUB_ACTIVITY && intent != null) {
             intentData = (ItemRepository) getIntent().getSerializableExtra(getString(R.string.intentKEY));
             Log.w("intentData", "getIntentData");

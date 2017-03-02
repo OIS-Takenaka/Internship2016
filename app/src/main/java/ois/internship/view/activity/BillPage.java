@@ -1,9 +1,11 @@
 package ois.internship.view.activity;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
 import ois.internship.presentation.BillPresenter;
@@ -16,6 +18,8 @@ public class BillPage extends BaseActivity implements RadioGroup.OnCheckedChange
     public TextView billDiscountPrice;
     public TextView billDeliverPrice;
     public TextView billTotalPrice;
+    public TextView billRemainPoint;
+    public BootstrapButton billEnterButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,8 @@ public class BillPage extends BaseActivity implements RadioGroup.OnCheckedChange
         billDiscountPrice = (TextView) findViewById(R.id.bill_discount_price);
         billDeliverPrice = (TextView) findViewById(R.id.bill_deliver_price);
         billTotalPrice = (TextView) findViewById(R.id.bill_total_price);
+        billRemainPoint = (TextView) findViewById(R.id.bill_remain_point);
+        billEnterButton = (BootstrapButton) findViewById(R.id.bill_enter_button);
 
         // ラジオボタンのセット
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
@@ -44,6 +50,13 @@ public class BillPage extends BaseActivity implements RadioGroup.OnCheckedChange
         // presenter描画
         billPresenter.onCreate();
 
+        // 決定ボタンのアクションを追加
+        billEnterButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               // Object a = billPresenter.getBillInfo();
+           }
+       });
         /////////////////////////////////////////////////////////////////////////
     }
 

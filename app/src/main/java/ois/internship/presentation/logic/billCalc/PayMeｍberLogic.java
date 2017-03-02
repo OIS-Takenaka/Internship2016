@@ -1,8 +1,8 @@
 package ois.internship.presentation.logic.billCalc;
 
-import ois.internship.presentation.logic.injector.BillCalcInjectorIf;
+import ois.internship.presentation.logic.injector.BillCalcInjector;
 
-public class PayMeｍberLogic implements BillCalcInjectorIf{
+public class PayMeｍberLogic implements BillCalcInjector {
 
     // 現在日付
     private int day = 1;
@@ -16,12 +16,19 @@ public class PayMeｍberLogic implements BillCalcInjectorIf{
     // 合計金額
     private int billTotalPrice = 0;
 
+    // 残りポイント数
+    private int billRemainPoint = 0;
+
+    //=================================================================
+    // 有料会員の清算
+    //=================================================================
     public PayMeｍberLogic(int[] price, boolean usePointFlag) {
 
         billTotalPrice = 0;
 
         if(usePointFlag){
             billDiscountPrice = -1000;
+            billRemainPoint = -1000;
         } else {
             billDiscountPrice = 0;
         }
@@ -38,6 +45,8 @@ public class PayMeｍberLogic implements BillCalcInjectorIf{
 
         billTotalPrice += billDiscountPrice;
         billTotalPrice += billDeliverPrice;
+
+        billRemainPoint = (int) billTotalPrice / 100;
     }
 
     public int getBillDiscountPrice() {
@@ -48,5 +57,8 @@ public class PayMeｍberLogic implements BillCalcInjectorIf{
     }
     public int getBillTotalPrice() {
         return billTotalPrice;
+    }
+    public int getBillRemainPoint() {
+        return billRemainPoint;
     }
 }

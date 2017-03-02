@@ -29,6 +29,9 @@ public class ItemPage extends BaseActivity {
     public LinearLayout selectItemPriceLay;
     public BootstrapButton selectItemSubmitButton;
     public BootstrapButton selectItemBillButton;
+    public BootstrapButton changeDayButton;
+    public BootstrapButton changeMemberButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,8 @@ public class ItemPage extends BaseActivity {
         selectItemPriceLay = (LinearLayout) findViewById(R.id.select_item_price_lay);
         selectItemSubmitButton = (BootstrapButton) findViewById(R.id.select_item_submit);
         selectItemBillButton = (BootstrapButton) findViewById(R.id.select_item_bill);
+        changeDayButton = (BootstrapButton) findViewById(R.id.change_day_button);
+        changeMemberButton = (BootstrapButton) findViewById(R.id.change_member_button);
 
         // presenter初期化
         itemPresenter = new ItemPresenter(getBaseContext(), this);
@@ -71,6 +76,16 @@ public class ItemPage extends BaseActivity {
             @Override
             public void onClick(View v) {
                 transitionPage(BillPage.class, itemPresenter.getCart());
+            }
+        });
+        changeDayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {// itemPresenter.changeDay();
+            }
+        });
+        changeMemberButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {// itemPresenter.changeMember();
             }
         });
 
