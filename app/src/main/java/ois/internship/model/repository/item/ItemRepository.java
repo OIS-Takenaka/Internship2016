@@ -3,6 +3,7 @@ package ois.internship.model.repository.item;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import ois.internship.model.entity.AccountEntity;
 import ois.internship.model.entity.ItemEntity;
 import ois.internship.model.repository.BaseRepository;
 import ois.internship.view.ui.Cards.CardModel;
@@ -11,6 +12,8 @@ import ois.internship.view.ui.If.CardsInterface;
 public class ItemRepository extends BaseRepository implements CardsInterface, Serializable{
 
     private ArrayList<ItemEntity> itemList;
+    private int nowDay = 1;
+    AccountEntity account = new AccountEntity();
 
 
     //=============================================================================
@@ -84,4 +87,22 @@ public class ItemRepository extends BaseRepository implements CardsInterface, Se
         return false;
     }
 
+    public void setDay(int day) {
+        this.nowDay = day;
+    }
+
+    public int getDay() {
+        return this.nowDay;
+    }
+
+    public void setAccount(int account) {
+        this.account.setMemberInfo(account);
+    }
+
+    public int getAccount() {
+        return this.account.getMemberInfo();
+    }
+    public int getPoint() {
+        return this.account.getPoint();
+    }
 }

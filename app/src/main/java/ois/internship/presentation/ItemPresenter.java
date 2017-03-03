@@ -27,6 +27,8 @@ import ois.internship.view.ui.tab.TabPagerAdpter;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
+import static ois.internship.model.entity.AccountEntity.FREE_MEMBER;
+import static ois.internship.model.entity.AccountEntity.PAY_MEMBER;
 
 
 public class ItemPresenter extends BasePresenter implements LoaderManager.LoaderCallbacks<JSONArray> {
@@ -44,7 +46,6 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
 
         // View
         private ItemPage view;
-
         private Stack<String> getCategory = new Stack<>();
 
         //------------------------------------------------------------------------------
@@ -202,6 +203,33 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
 
         public ItemRepository getCart(){
             return this.cart;
+        }
+
+        public void changeDay() {
+            int index = 0;
+            int days[] = {1,5,10,20,30};
+
+            for(int i=0; i < days.length; i++) {
+                if(days[i] ==  cart.getDay()) {
+                    index = i;
+                }
+            }
+            if(index++ >= days.length - 1) index = 0;
+            view.changeDayButton.setText(days[index] + "日");
+            cart.setDay(days[index]);
+            Log.i("---", "" + days[index]);
+        }
+        public void changeMember() {
+            switch (cart.getAccount()) {
+                case FREE_MEMBER:
+                    view.changeMemberButton.setText("有料会員");
+                    cart.setAccount(PAY_MEMBER);
+                    break;
+                case PAY_MEMBER:
+                    view.changeMemberButton.setText("無料会員");
+                    cart.setAccount(FREE_MEMBER);
+                    break;
+            }
         }
 }
 

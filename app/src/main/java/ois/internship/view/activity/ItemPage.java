@@ -32,7 +32,6 @@ public class ItemPage extends BaseActivity {
     public BootstrapButton changeDayButton;
     public BootstrapButton changeMemberButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,12 +79,14 @@ public class ItemPage extends BaseActivity {
         });
         changeDayButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {// itemPresenter.changeDay();
+            public void onClick(View v) {
+                itemPresenter.changeDay();
             }
         });
         changeMemberButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {// itemPresenter.changeMember();
+            public void onClick(View v) {
+                itemPresenter.changeMember();
             }
         });
 

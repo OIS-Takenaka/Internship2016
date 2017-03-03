@@ -20,7 +20,7 @@ public class PayMeｍberLogic implements BillCalcInjector {
     //=================================================================
     // 有料会員の清算
     //=================================================================
-    public PayMeｍberLogic(int[] price, boolean usePointFlag) {
+    public PayMeｍberLogic(int[] price, int havePoint, int nowDay, boolean usePointFlag) {
 
         billTotalPrice = 0;
 

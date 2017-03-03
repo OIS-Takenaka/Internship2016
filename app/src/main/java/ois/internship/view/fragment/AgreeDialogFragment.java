@@ -21,7 +21,6 @@ public class AgreeDialogFragment extends DialogFragment {
         dismiss();
     }
     public void setData(DialogModel data) {
-
-
+        dialogModel = data;
     }
 }

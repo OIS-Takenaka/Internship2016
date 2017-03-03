@@ -21,7 +21,7 @@ public class FreeMeｍberLogic implements BillCalcInjector {
     //=================================================================
     // 無料会員の清算
     //=================================================================
-    public FreeMeｍberLogic(int[] price, boolean usePointFlag) {
+    public FreeMeｍberLogic(int[] price, int havePoint, int nowDay, boolean usePointFlag) {
 
         billTotalPrice = 0;
 
@@ -46,7 +46,7 @@ public class FreeMeｍberLogic implements BillCalcInjector {
         billTotalPrice += billDiscountPrice;
         billTotalPrice += billDeliverPrice;
 
-        billDiscountPrice = (int) billTotalPrice / 100;
+        billDiscountPrice = (int) billTotalPrice / 10;
     }
 
     public int getBillDiscountPrice() {

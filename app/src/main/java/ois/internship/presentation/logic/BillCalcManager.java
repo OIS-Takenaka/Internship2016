@@ -2,13 +2,12 @@ package ois.internship.presentation.logic;
 
 import ois.internship.model.entity.AccountEntity;
 import ois.internship.model.repository.item.ItemRepository;
+import ois.internship.presentation.logic.billCalc.BillCalcInjector;
 import ois.internship.presentation.logic.billCalc.FreeMeｍberLogic;
 import ois.internship.presentation.logic.billCalc.PayMeｍberLogic;
-import ois.internship.presentation.logic.billCalc.BillCalcInjector;
 
 public class BillCalcManager {
 
-    AccountEntity accountEntity = new AccountEntity();
     int billDiscountPrice = 0;
     int billDeliverPrice = 0;
     int billTotalPrice = 0;
@@ -20,10 +19,10 @@ public class BillCalcManager {
         for(int i=0 ; i<cart.dataSize(); i++) price[i]  = cart.getItem(i).getPrice();
 
         // 清算方法の切り替え
-        if(accountEntity.getMemberInfo() == AccountEntity.FREE_MEMBER) {
-            logic = new PayMeｍberLogic(price, usePointFlag);
+        if(cart.getAccount() == AccountEntity.FREE_MEMBER) {
+            logic = new PayMeｍberLogic(price, cart.getPoint(), cart.getDay(), usePointFlag);
         } else {
-            logic = new FreeMeｍberLogic(price, usePointFlag);
+            logic = new FreeMeｍberLogic(price, cart.getPoint(), cart.getDay(), usePointFlag);
         }
 
         billDiscountPrice = logic.getBillDiscountPrice();

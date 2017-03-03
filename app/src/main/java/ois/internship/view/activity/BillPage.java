@@ -86,6 +86,7 @@ public class BillPage extends BaseActivity implements RadioGroup.OnCheckedChange
 
     public void showDialog() {
         agreeDialogFragment = new AgreeDialogFragment();
+        agreeDialogFragment.setData(billPresenter.getDialog());
         agreeDialogFragment.show(getFragmentManager(), "");
     }
 

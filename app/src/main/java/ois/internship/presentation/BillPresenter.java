@@ -7,6 +7,7 @@ import ois.internship.model.repository.item.ItemRepository;
 import ois.internship.presentation.logic.BillCalcManager;
 import ois.internship.view.activity.BillPage;
 import ois.internship.view.fragment.CustomListFragment;
+import ois.internship.view.ui.Dailog.DialogModel;
 import ois.internship.view.ui.Lists.ListModel;
 
 
@@ -65,6 +66,9 @@ public class BillPresenter extends BasePresenter {
 
     public void setCart(ItemRepository cart) {
         this.cart = cart;
+    }
+    public DialogModel getDialog() {
+        return new DialogModel("", "計: " + billCalcManager.getBillTotalPrice());
     }
 
     public void setUsePointFlag(boolean usePointFlag) {

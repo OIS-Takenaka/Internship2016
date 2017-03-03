@@ -54,10 +54,10 @@
                 <com.beardedhen.androidbootstrap.BootstrapButton
                     android:id="@+id/change_day_button"
                     android:layout_height="48sp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     app:bootstrapSize="lg"
                     app:bootstrapBrand="regular"
-                    android:text="4月1日"/>
+                    android:text="1日"/>
                 <com.beardedhen.androidbootstrap.BootstrapButton
                     android:id="@+id/change_member_button"
                     android:layout_height="48sp"
