@@ -9,6 +9,7 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
 import ois.internship.presentation.BillPresenter;
+import ois.internship.view.fragment.AgreeDialogFragment;
 
 public class BillPage extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
@@ -20,6 +21,8 @@ public class BillPage extends BaseActivity implements RadioGroup.OnCheckedChange
     public TextView billTotalPrice;
     public TextView billRemainPoint;
     public BootstrapButton billEnterButton;
+
+    AgreeDialogFragment agreeDialogFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class BillPage extends BaseActivity implements RadioGroup.OnCheckedChange
            @Override
            public void onClick(View v) {
                // Object a = billPresenter.getBillInfo();
+               showDialog();
            }
        });
         /////////////////////////////////////////////////////////////////////////
@@ -78,6 +82,11 @@ public class BillPage extends BaseActivity implements RadioGroup.OnCheckedChange
                 billPresenter.setUsePointFlag(false);
                 break;
         }
+    }
+
+    public void showDialog() {
+        agreeDialogFragment = new AgreeDialogFragment();
+        agreeDialogFragment.show(getFragmentManager(), "");
     }
 
     @Override

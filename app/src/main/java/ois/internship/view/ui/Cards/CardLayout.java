@@ -19,6 +19,12 @@ public class CardLayout {
     // テキスト
     int textLayout = R.id.card_list_textView;
 
+    // 説明
+    int dispLayout = R.id.card_list_disp;
+
+    // マーク
+    int markLayout = R.id.card_list_mark;
+
     // コンストラクタ
     public CardLayout(int gridViewLayout){
         Log.i("DEBUG","TempListLayout");

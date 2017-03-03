@@ -32,11 +32,6 @@ import static android.view.View.VISIBLE;
 public class ItemPresenter extends BasePresenter implements LoaderManager.LoaderCallbacks<JSONArray> {
 
         //=============================================================================
-        // TEST FLAG
-        //=============================================================================
-        boolean TEST_FLAG = true;
-
-        //=============================================================================
         // Variable
         //=============================================================================
         // Context
@@ -115,7 +110,7 @@ public class ItemPresenter extends BasePresenter implements LoaderManager.Loader
             Log.w("DEBUG ---", args.getString("url"));
             String url = args.getString("url");
             BaseLoader asyncTaskLoader = null;
-            if(TEST_FLAG) {
+            if(context.getResources().getBoolean(R.bool.debugFlag)) {
                 asyncTaskLoader = new MockAsyncTaskLoader(context, url);
             } else {
                 asyncTaskLoader = new AsyncHttpLoader(context, url);

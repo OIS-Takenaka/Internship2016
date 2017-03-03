@@ -1,27 +1,29 @@
 package ois.internship.presentation.logic;
 
+import ois.internship.model.entity.AccountEntity;
 import ois.internship.model.repository.item.ItemRepository;
+import ois.internship.presentation.logic.billCalc.FreeMeｍberLogic;
 import ois.internship.presentation.logic.billCalc.PayMeｍberLogic;
-import ois.internship.presentation.logic.injector.BillCalcInjector;
+import ois.internship.presentation.logic.billCalc.BillCalcInjector;
 
 public class BillCalcManager {
 
+    AccountEntity accountEntity = new AccountEntity();
     int billDiscountPrice = 0;
     int billDeliverPrice = 0;
     int billTotalPrice = 0;
     int billRemainPoint = 0;
+    BillCalcInjector logic;
 
     public BillCalcManager(ItemRepository cart, boolean usePointFlag){
         int[] price = new int[cart.dataSize()];
         for(int i=0 ; i<cart.dataSize(); i++) price[i]  = cart.getItem(i).getPrice();
 
-        BillCalcInjector logic;
-
         // 清算方法の切り替え
-        if(false) {
+        if(accountEntity.getMemberInfo() == AccountEntity.FREE_MEMBER) {
             logic = new PayMeｍberLogic(price, usePointFlag);
         } else {
-            logic = new PayMeｍberLogic(price, usePointFlag);
+            logic = new FreeMeｍberLogic(price, usePointFlag);
         }
 
         billDiscountPrice = logic.getBillDiscountPrice();
@@ -42,4 +44,5 @@ public class BillCalcManager {
     public String getBillRemainPoint() {
         return billRemainPoint + "ポイント ";
     }
+
 }

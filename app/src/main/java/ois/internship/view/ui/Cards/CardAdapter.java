@@ -47,7 +47,13 @@ public class CardAdapter extends BaseAdapter implements AsyncImg {
         convertView = layoutInflater.inflate(cardLayout.layout, parent, false);
         ViewHolder holder = new ViewHolder(convertView);
         holder.textView.setText(data.get(position).text);
+        holder.dispView.setText(data.get(position).disp);
         holder.imageView.setImageBitmap((Bitmap)cache.get(position));
+        if(data.get(position).mark) {
+            holder.markView.setVisibility(View.VISIBLE);
+        } else {
+            holder.markView.setVisibility(View.INVISIBLE);
+        }
         return convertView;
     }
 
@@ -83,12 +89,16 @@ public class CardAdapter extends BaseAdapter implements AsyncImg {
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
+        TextView dispView;
         ImageView imageView;
+        TextView markView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(cardLayout.textLayout);
+            dispView = (TextView) itemView.findViewById(cardLayout.dispLayout);
             imageView = (ImageView) itemView.findViewById(cardLayout.imgLayout);
+            markView = (TextView) itemView.findViewById(cardLayout.markLayout);
         }
     }
 

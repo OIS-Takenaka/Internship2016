@@ -58,7 +58,7 @@ public class AsyncImgLoader extends AsyncTask<String, Void, Bitmap> {
 
     @Override
     protected void onPostExecute(Bitmap bitmap) {
-        this.asyncImg.setImage(position, bitmap);
+        asyncImg.setImage(position, bitmap);
         Log.i("AsyncImg","onPostExecute");
     }
 }

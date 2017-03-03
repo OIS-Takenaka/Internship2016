@@ -1,7 +1,5 @@
 package ois.internship.presentation.logic.billCalc;
 
-import ois.internship.presentation.logic.injector.BillCalcInjector;
-
 public class PayMeｍberLogic implements BillCalcInjector {
 
     // 現在日付

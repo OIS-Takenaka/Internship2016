@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFF">
-
         <ImageView
             android:id="@+id/card_list_image"
             android:layout_width="match_parent"
@@ -24,8 +23,6 @@
             android:layout_alignParentStart="true"
             android:scaleType="centerCrop"
             android:background="@drawable/ic_image"/>
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="72dp"
@@ -37,19 +34,29 @@
             <TextView
                 android:id="@+id/card_list_textView"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:textSize="16dp"
+                android:layout_height="40dp"
+                android:textSize="18dp"
                 android:gravity="center_vertical"
                 android:textColor="@color/card_text"/>
             <TextView
-                android:id="@+id/card_list_price"
+                android:id="@+id/card_list_disp"
                 android:layout_width="match_parent"
-                android:layout_height="24dp"
+                android:layout_height="18dp"
                 android:textSize="12dp"
                 android:gravity="center_vertical"
-                android:textColor="@color/card_text"/>
+                android:textColor="@color/card_text" />
         </LinearLayout>
-
+        <TextView
+            android:id="@+id/card_list_mark"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:background="#c8ff5748"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:text="未清算"
+            android:visibility="invisible"/>
     </RelativeLayout>
 
 </com.andexert.library.RippleView>

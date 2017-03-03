@@ -2,8 +2,10 @@
 <resources>
     <!-- INTENT KEY -->
     <string name="intentKEY">INTENT_KEY</string>
-
-    <!-- HTTPのパス -->
-    <!--string name="httpPath">http://10.0.2.2/ois</string-->
-    <string name="httpPath">http://192.168.0.11/ois/</string>
+    <!-- mockのURL -->
+    <!--<string name="httpPath">http://192.168.0.11/ois/</string>-->
+    <!-- 本番のURL -->
+    <string name="httpPath">http://10.0.2.2/ois</string>
+    <!-- デバックフラグ -->
+    <bool name="debugFlag">true</bool>
 </resources>

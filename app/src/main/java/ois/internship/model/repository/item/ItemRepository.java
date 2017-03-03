@@ -65,11 +65,15 @@ public class ItemRepository extends BaseRepository implements CardsInterface, Se
     public ArrayList<CardModel> getCardData() {
         ArrayList<CardModel> cardData = new ArrayList();
         for(int i=0; i < dataSize(); i++) {
-            cardData.add(new CardModel(getItem(i).getImg(), getItem(i).getName()));
+            cardData.add(new CardModel(getItem(i).getImg(), getItem(i).getName(),getItem(i).getPrice() + "円", false));
         }
         return cardData;
     }
 
+    /**
+     * カートの商品を削除
+     * @name
+     */
     public boolean delete(String name){
         for(int i=0; i < dataSize(); i++) {
             if(itemList.get(i).getName() == name) {
