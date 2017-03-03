@@ -1,10 +1,6 @@
-package ois.internship.presentation.logic.billCalc;
+package ois.internship.controller.logic.billCalc;
 
-
-public class FreeMeｍberLogic implements BillCalcInjector {
-
-    // 現在日付
-    private int day = 1;
+public class PayMeｍberLogic implements BillCalcInjector {
 
     // 割引価格
     private int billDiscountPrice = 0;
@@ -19,9 +15,9 @@ public class FreeMeｍberLogic implements BillCalcInjector {
     private int billRemainPoint = 0;
 
     //=================================================================
-    // 無料会員の清算
+    // 有料会員の清算
     //=================================================================
-    public FreeMeｍberLogic(int[] price, int havePoint, int nowDay, boolean usePointFlag) {
+    public PayMeｍberLogic(int[] price, int havePoint, int nowDay, boolean usePointFlag) {
 
         billTotalPrice = 0;
 
@@ -31,7 +27,6 @@ public class FreeMeｍberLogic implements BillCalcInjector {
         } else {
             billDiscountPrice = 0;
         }
-
 
         for(int i=0; i < price.length; i++) {
             billTotalPrice += price[i];
@@ -46,7 +41,7 @@ public class FreeMeｍberLogic implements BillCalcInjector {
         billTotalPrice += billDiscountPrice;
         billTotalPrice += billDeliverPrice;
 
-        billDiscountPrice = (int) billTotalPrice / 10;
+        billRemainPoint = (int) billTotalPrice / 100;
     }
 
     public int getBillDiscountPrice() {

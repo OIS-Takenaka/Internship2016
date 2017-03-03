@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
-import ois.internship.presentation.BillPresenter;
+import ois.internship.controller.BillPresenter;
 import ois.internship.view.fragment.AgreeDialogFragment;
 
 public class BillPage extends BaseActivity implements RadioGroup.OnCheckedChangeListener {

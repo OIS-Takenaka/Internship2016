@@ -1,10 +1,10 @@
-package ois.internship.presentation;
+package ois.internship.controller;
 
 import android.content.Context;
 import android.util.Log;
 
 import ois.internship.model.repository.item.ItemRepository;
-import ois.internship.presentation.logic.BillCalcManager;
+import ois.internship.controller.logic.BillCalcManager;
 import ois.internship.view.activity.BillPage;
 import ois.internship.view.fragment.CustomListFragment;
 import ois.internship.view.ui.Dailog.DialogModel;

@@ -1,10 +1,10 @@
-package ois.internship.presentation.logic;
+package ois.internship.controller.logic;
 
 import ois.internship.model.entity.AccountEntity;
 import ois.internship.model.repository.item.ItemRepository;
-import ois.internship.presentation.logic.billCalc.BillCalcInjector;
-import ois.internship.presentation.logic.billCalc.FreeMeｍberLogic;
-import ois.internship.presentation.logic.billCalc.PayMeｍberLogic;
+import ois.internship.controller.logic.billCalc.BillCalcInjector;
+import ois.internship.controller.logic.billCalc.FreeMeｍberLogic;
+import ois.internship.controller.logic.billCalc.PayMeｍberLogic;
 
 public class BillCalcManager {
 

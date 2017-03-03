@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ois.internship.R;
-import ois.internship.presentation.ItemPresenter;
+import ois.internship.controller.ItemPresenter;
 
 public class ItemPage extends BaseActivity {
 

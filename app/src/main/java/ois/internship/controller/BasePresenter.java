@@ -1,4 +1,4 @@
-package ois.internship.presentation;
+package ois.internship.controller;
 
 import ois.internship.view.BaseViewInterface;
 

@@ -1,4 +1,4 @@
-package ois.internship.presentation.logic.billCalc;
+package ois.internship.controller.logic.billCalc;
 
 
 public interface BillCalcInjector {
