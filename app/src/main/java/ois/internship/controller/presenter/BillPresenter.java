@@ -1,4 +1,4 @@
-package ois.internship.controller;
+package ois.internship.controller.presenter;
 
 import android.content.Context;
 import android.util.Log;

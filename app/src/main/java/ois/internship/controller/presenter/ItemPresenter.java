@@ -1,4 +1,4 @@
-package ois.internship.controller;
+package ois.internship.controller.presenter;
 
 import android.app.LoaderManager;
 import android.content.Context;

@@ -18,6 +18,6 @@ public class AccountEntity extends BaseEntity implements Serializable {
         return memberInfo;
     }
     public int getPoint() {
-        return memberInfo;
+        return point;
     }
 }
