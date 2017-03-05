@@ -25,6 +25,7 @@ public class FreeMeｍberLogic implements BillCalcInjector {
         for(int i=0; i < price.length; i++) {
             excludingTax += price[i];
         }
+        if(excludingTax == 0) return;
 
         // 日にち割引の計算
         if(nowDay == 20 || nowDay == 30) {
