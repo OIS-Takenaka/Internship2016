@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding-left: 12px;
+	line-height: 22px;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark {
+	color: #DDD;
+}
+
+.vscode-high-contrast {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	padding: 10px;
+	overflow-wrap: break-word;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+:not(pre):not(.hljs) > code {
+	color: #A31515;
+	font-size: inherit;
+	font-family: inherit;
+}
+h1 ,h2, h3 {
+  margin: 40px 0 15px;}
+
+h5 {
+  padding: 2px 8px;
+  background-color: #FAFAFA;
+  border-left: 4px solid #333;}
+
+.no-margin-top {
+  margin-top: 0px;}
+
+table {
+  font-size: 0.85em;}
+
+p {
+  text-indent: 1em;}
+
+ul :first-child, ol :first-child {
+    margin-top: 5px;}
+
+ul li ul li {
+  margin: 5px 0px;}
+
+span.ref, span.notes{
+  font-size: 0.5em;}
+span.ref:before {
+  content: "　(参考：";}
+span.ref:after {
+  content: ")　";}
+span.notes:before {
+  content: "　(注：";}
+span.notes:after {
+  content: ")　";}
+
+div#ref, div#notes{
+  font-size: 0.85em;}
+div#ref ul, div#notes ul {
+  margin: 10px 0;}
+div#ref li, div#notes li {
+  margin: 10px 0;}
+
+pre {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;}
+pre code {
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;}
+
+</style>
+
+</head>
+<body>
+<h1>冬期インターン(アプリ) リファレンス</h1>
+<h2>ディレクトリ構成</h2>
+<p>Androidアプリ開発のファイル構成について説明する。</p>
+<ul>
+<li>【app】<br>
+アプリ全体のフォルダ
+<ul>
+<li>【manifests】<br>
+アプリの決まり事を記述するファイルを入れておく。（このアプリはネットワークを使用しますなど）</li>
+<li>【java】<br>
+アプリのJavaで書かれたソースファイル。アプリのプログラムを記述する。
+<ul>
+<li>【ois.internship】<br>
+本アプリのメインのプログラム</li>
+</ul>
+</li>
+<li>【assets】<br>
+アプリに関係のない素材を入れておく。（今回はテスト用のファイルが入っている。）</li>
+<li>【res】<br>
+layoutや画像ファイルなどを入れておく。
+<ul>
+<li>【drawable】<br>
+layoutで定義した部品に対して色の付け方、形などを設定する。</li>
+<li>【layout】<br>
+レイアウトファイルを入れておく。</li>
+<li>【mipmap】<br>
+画像のファイルを入れておく。（主にアイコンなどのbmpファイル）</li>
+<li>【values】<br>
+文字の大きさやフォントなどの設定ファイルを入れておく。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>ソースファイルのパッケージ構成</h2>
+<p>本アプリ実装はMVCアーキテクチャを採用し、機能ごとに処理を切り分けた階層構造となっている。</p>
+<ul>
+<li>【ois.internship】<br>
+メインのプログラム
+<ul>
+<li>【controller】
+<ul>
+<li>【logic】<br>
+業務ロジックを記述する。<br>
+業務ロジックとは、具体的な業務で扱う様々な実体(商品、顧客、在庫など)を表現し、また、それらの関係や処理の方法、業務の流れなどをプログラムコードとして実装した部分。(*1)</li>
+<li>【presenter】<br>
+画面毎に使用するデータを操作し、view(画面)に更新したデータを伝える。</li>
+</ul>
+</li>
+<li>【model】
+<ul>
+<li>【entity】<br>
+データの最小単位を記述する。（ユーザー情報、商品情報など）</li>
+<li>【loader】<br>
+非同期でサーバに情報を取りに行くロジックを記述する。</li>
+<li>【repository】<br>
+データの集まりを記述する。（在庫情報、カート情報など）</li>
+</ul>
+</li>
+<li>【util】<br>
+プログラムの中で汎用的に使えるロジックを入れる。</li>
+<li>【view】
+<ul>
+<li>【activity】<br>
+画面のライフサイクルを記述する。<br>
+画面のボタンやテキストボックスなどの情報を操作可能な状態にする。<br>
+画面1つに対して1ファイル用意する。（Androidアプリはこのファイルさえあれば動く。）</li>
+<li>【fragbment】<br>
+画面1つを複数の部品に分けたものを操作可能な状態にする。</li>
+<li>【ui】<br>
+画面表示の部品を汎用的に使えるようする。</li>
+</ul>
+</li>
+<li>MainActivity.java<br>
+本アプリで最初に起動される画面。</li>
+</ul>
+</li>
+</ul>
+<p>【参考】
+*1 http://e-words.jp/w/%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF.html</p>
+
+</body>
+</html>
